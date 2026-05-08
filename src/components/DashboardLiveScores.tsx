@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Award, Building2, Crown, Flame, Trophy, Users, Activity, TrendingUp, Sparkles } from "lucide-react";
+import { Award, Building2, Crown, Flame, Trophy, Users, Activity, TrendingUp, Sparkles, CloudLightning, Sun, BookOpen, Wind, Zap, Home } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Counter } from "./Counter";
 import { Tilt3D } from "./Tilt3D";
@@ -20,20 +20,20 @@ import { allEvents } from "@/lib/eventsData";
 const stats: Stat[] = [
   { icon: Users, label: "Total Teams", value: 6, hint: "Agniyas, Dhronas, Marutas, Rudras, Suryas, Vajras", accent: "gold" },
   { icon: Flame, label: "Total Participants", value: 0, hint: "Across all events", accent: "red" },
-  { icon: Trophy, label: "Total Events", value: allEvents.length, hint: "Original baseline: 48 events", accent: "gold" },
+  { icon: Trophy, label: "Total Events", value: allEvents.length, hint: "Original baseline: 150 events", accent: "gold" },
   { icon: Building2, label: "Festival Days", value: 3, hint: "Three days. One legend.", accent: "red" },
   { icon: Crown, label: "2025 Champion", value: 1, suffix: " — Agniyas", hint: "Last year's overall winners", accent: "gold" },
   { icon: Award, label: "Highest Score", value: 1845, hint: "Agniyas — SIMMAM 2025", accent: "red" },
 ];
 
 // House element icons
-const houseElementIcons: { [key: string]: string } = {
-  "Storm": "⚡",
-  "Sun": "☀️",
-  "Wisdom": "📚",
-  "Fire": "🔥",
-  "Wind": "💨",
-  "Thunder": "⚡",
+const houseElementIcons: { [key: string]: React.ElementType } = {
+  "Storm": CloudLightning,
+  "Sun": Sun,
+  "Wisdom": BookOpen,
+  "Fire": Flame,
+  "Wind": Wind,
+  "Thunder": Zap,
 };
 
 type HouseScore = {
@@ -175,16 +175,22 @@ export function DashboardLiveScores() {
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       
-                      {/* House Logo/Element */}
                       <div
-                        className="w-10 h-10 rounded-lg flex items-center justify-center text-xl font-bold border-2"
+                        className="w-10 h-10 rounded-lg flex items-center justify-center border-2"
                         style={{
                           backgroundColor: `${house.accent}20`,
                           borderColor: house.accent,
                           color: house.accent,
                         }}
                       >
-                        {houseElementIcons[house.element] || "🏠"}
+                        {houseElementIcons[house.element] ? (
+                          (() => {
+                            const Icon = houseElementIcons[house.element];
+                            return <Icon className="w-5 h-5" />;
+                          })()
+                        ) : (
+                          <Home className="w-5 h-5" />
+                        )}
                       </div>
 
                       <div className="flex flex-col">
@@ -254,20 +260,6 @@ export function DashboardLiveScores() {
               ))}
             </div>
 
-            {/* Legend */}
-            <div className="mt-8 pt-6 border-t border-white/10">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
-                {houses.map((house) => (
-                  <div key={house.name} className="flex items-center gap-2">
-                    <div
-                      className="w-3 h-3 rounded-full"
-                      style={{ backgroundColor: house.accent }}
-                    />
-                    <span className="text-foreground/70">{house.short}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
         </div>
       </div>
     </section>

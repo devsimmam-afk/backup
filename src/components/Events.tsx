@@ -30,7 +30,7 @@ export function Events() {
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
           eyebrow="Events"
-          title="48 Battlegrounds. One Crown."
+          title="150 Battlegrounds. One Crown."
           subtitle="From algorithmic showdowns to runway spectacles — SIMMAM 2026 has a stage for every spark."
         />
 

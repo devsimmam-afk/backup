@@ -90,9 +90,18 @@ function CaptainsPage() {
                     </div>
                   </div>
 
+                  <div className="relative mb-4 glass rounded-xl px-4 py-3 flex items-center justify-between text-sm">
+                    <div>
+                      <div className="text-[10px] tracking-[0.25em] text-foreground/50">
+                        FACULTY COORDINATOR
+                      </div>
+                      <div className="text-foreground/90">{h.faculty.name}</div>
+                    </div>
+                  </div>
+
                   <div className="relative grid sm:grid-cols-2 gap-4">
                     <PersonCard
-                      role="Captain"
+                      role="Students Captain"
                       name={h.captain.name}
                       year={h.captain.year}
                       phone={h.captain.phone}
@@ -100,29 +109,13 @@ function CaptainsPage() {
                       gradient={h.gradient}
                     />
                     <PersonCard
-                      role="Vice Captain"
+                      role="Students Vice Captain"
                       name={h.vice.name}
                       year={h.vice.year}
                       phone={h.vice.phone}
                       accent={h.accent}
                       gradient={h.gradient}
                     />
-                  </div>
-
-                  <div className="relative mt-4 glass rounded-xl px-4 py-3 flex items-center justify-between text-sm">
-                    <div>
-                      <div className="text-[10px] tracking-[0.25em] text-foreground/50">
-                        FACULTY COORDINATOR
-                      </div>
-                      <div className="text-foreground/90">{h.faculty.name}</div>
-                    </div>
-                    <a
-                      href={`tel:${h.faculty.phone.replace(/\s/g, "")}`}
-                      className="inline-flex items-center gap-1.5 text-xs text-gold hover:text-gold/80"
-                    >
-                      <Phone className="w-3.5 h-3.5" />
-                      {h.faculty.phone}
-                    </a>
                   </div>
                 </div>
               </Tilt3D>
@@ -142,6 +135,7 @@ function PersonCard({
   year,
   phone,
   accent,
+  gradient,
 }: {
   role: string;
   name: string;
@@ -168,7 +162,7 @@ function PersonCard({
           {initials}
         </div>
         <div className="min-w-0">
-          <div className="text-[10px] tracking-[0.3em] text-gold/80">{role.toUpperCase()}</div>
+          <div className="text-[10px] tracking-[0.15em] text-gold/80 leading-tight">{role.toUpperCase()}</div>
           <div className="font-semibold truncate">{name}</div>
           <div className="text-xs text-foreground/55">{year}</div>
         </div>
