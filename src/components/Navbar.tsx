@@ -9,16 +9,14 @@ import { LionEmblem } from "./LionEmblem";
 const leftLinks = [
   { href: "/#home",        label: "Home" },
   { href: "/#dashboard",   label: "Dashboard" },
-  { href: "/#teams",       label: "Houses" },
-  { href: "/#leaderboard", label: "2025 Results" },
-  { href: "/#archive",     label: "Archive" },
+  { href: "/#teams",       label: "Teams" },
+  { href: "/#leaderboard", label: "SIMMAM'25" },
 ];
 
 const rightLinks = [
   { href: "/events",    label: "Events" },
   { href: "/captains",  label: "Captains" },
-  { href: "/#gallery",  label: "Gallery" },
-  { href: "/#live",     label: "Live Scores" },
+  { href: "/#archive",  label: "Gallery" },
   { href: "/#contact",  label: "Contact" },
 ];
 

@@ -68,7 +68,13 @@ export function Footer() {
               {["Home", "Teams", "Events", "Gallery", "Live Scores", "Faculty"].map((l) => (
                 <li key={l}>
                   <a
-                    href={l === "Events" ? "/events" : `#${l.toLowerCase().replace(" ", "")}`}
+                    href={
+                      l === "Events"
+                        ? "/events"
+                        : l === "Gallery"
+                        ? "/#archive"
+                        : `#${l.toLowerCase().replace(" ", "")}`
+                    }
                     className="hover:text-gold transition"
                   >
                     {l}

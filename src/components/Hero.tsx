@@ -61,7 +61,7 @@ export function Hero() {
           </svg>
 
           <a
-            href="[Insert Link]"
+            href="https://www.instagram.com/ssesimam/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:scale-110 transition-transform duration-300 drop-shadow-md hover:drop-shadow-lg"
@@ -120,7 +120,7 @@ export function Hero() {
           style={{ animationDelay: ".45s" }}
         >
           <a
-            href="#events"
+            href="/events"
             className="group relative inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm bg-gradient-to-r from-[var(--crimson)] to-[var(--crimson-glow)] text-white shadow-[var(--shadow-glow-red)] hover:scale-105 transition-transform"
           >
             <Zap className="w-4 h-4" />
@@ -128,14 +128,14 @@ export function Hero() {
             <span className="absolute inset-0 rounded-full bg-white/0 group-hover:bg-white/10 transition" />
           </a>
           <a
-            href="#teams"
+            href="/#teams"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm glass-strong neon-border text-gold hover:bg-white/5 transition"
           >
             <Trophy className="w-4 h-4" />
             Explore Teams
           </a>
           <a
-            href="#live"
+            href="/live-scores"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm border border-gold/40 text-gold hover:bg-gold/10 transition"
           >
             <Calendar className="w-4 h-4" />

@@ -10,10 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as LiveScoresRouteImport } from './routes/live-scores'
 import { Route as EventsRouteImport } from './routes/events'
-import { Route as DashboardLiveRouteImport } from './routes/dashboard-live'
 import { Route as CaptainsRouteImport } from './routes/captains'
-import { Route as ArchiveGalleryRouteImport } from './routes/archive-gallery'
 import { Route as IndexRouteImport } from './routes/index'
 
 const RegisterRoute = RegisterRouteImport.update({
@@ -21,24 +20,19 @@ const RegisterRoute = RegisterRouteImport.update({
   path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LiveScoresRoute = LiveScoresRouteImport.update({
+  id: '/live-scores',
+  path: '/live-scores',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EventsRoute = EventsRouteImport.update({
   id: '/events',
   path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardLiveRoute = DashboardLiveRouteImport.update({
-  id: '/dashboard-live',
-  path: '/dashboard-live',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const CaptainsRoute = CaptainsRouteImport.update({
   id: '/captains',
   path: '/captains',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ArchiveGalleryRoute = ArchiveGalleryRouteImport.update({
-  id: '/archive-gallery',
-  path: '/archive-gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -49,62 +43,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/archive-gallery': typeof ArchiveGalleryRoute
   '/captains': typeof CaptainsRoute
-  '/dashboard-live': typeof DashboardLiveRoute
   '/events': typeof EventsRoute
+  '/live-scores': typeof LiveScoresRoute
   '/register': typeof RegisterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/archive-gallery': typeof ArchiveGalleryRoute
   '/captains': typeof CaptainsRoute
-  '/dashboard-live': typeof DashboardLiveRoute
   '/events': typeof EventsRoute
+  '/live-scores': typeof LiveScoresRoute
   '/register': typeof RegisterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/archive-gallery': typeof ArchiveGalleryRoute
   '/captains': typeof CaptainsRoute
-  '/dashboard-live': typeof DashboardLiveRoute
   '/events': typeof EventsRoute
+  '/live-scores': typeof LiveScoresRoute
   '/register': typeof RegisterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/archive-gallery'
-    | '/captains'
-    | '/dashboard-live'
-    | '/events'
-    | '/register'
+  fullPaths: '/' | '/captains' | '/events' | '/live-scores' | '/register'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/archive-gallery'
-    | '/captains'
-    | '/dashboard-live'
-    | '/events'
-    | '/register'
-  id:
-    | '__root__'
-    | '/'
-    | '/archive-gallery'
-    | '/captains'
-    | '/dashboard-live'
-    | '/events'
-    | '/register'
+  to: '/' | '/captains' | '/events' | '/live-scores' | '/register'
+  id: '__root__' | '/' | '/captains' | '/events' | '/live-scores' | '/register'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ArchiveGalleryRoute: typeof ArchiveGalleryRoute
   CaptainsRoute: typeof CaptainsRoute
-  DashboardLiveRoute: typeof DashboardLiveRoute
   EventsRoute: typeof EventsRoute
+  LiveScoresRoute: typeof LiveScoresRoute
   RegisterRoute: typeof RegisterRoute
 }
 
@@ -117,6 +88,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/live-scores': {
+      id: '/live-scores'
+      path: '/live-scores'
+      fullPath: '/live-scores'
+      preLoaderRoute: typeof LiveScoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/events': {
       id: '/events'
       path: '/events'
@@ -124,25 +102,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard-live': {
-      id: '/dashboard-live'
-      path: '/dashboard-live'
-      fullPath: '/dashboard-live'
-      preLoaderRoute: typeof DashboardLiveRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/captains': {
       id: '/captains'
       path: '/captains'
       fullPath: '/captains'
       preLoaderRoute: typeof CaptainsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/archive-gallery': {
-      id: '/archive-gallery'
-      path: '/archive-gallery'
-      fullPath: '/archive-gallery'
-      preLoaderRoute: typeof ArchiveGalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -157,10 +121,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ArchiveGalleryRoute: ArchiveGalleryRoute,
   CaptainsRoute: CaptainsRoute,
-  DashboardLiveRoute: DashboardLiveRoute,
   EventsRoute: EventsRoute,
+  LiveScoresRoute: LiveScoresRoute,
   RegisterRoute: RegisterRoute,
 }
 export const routeTree = rootRouteImport

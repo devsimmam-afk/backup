@@ -14,10 +14,17 @@ function diff() {
 
 export function Countdown() {
   const [t, setT] = useState(diff());
+  const [mounted, setMounted] = useState(false);
+  
   useEffect(() => {
+    setMounted(true);
     const id = setInterval(() => setT(diff()), 1000);
     return () => clearInterval(id);
   }, []);
+
+  if (!mounted) {
+    return <div className="flex gap-3 md:gap-5 justify-center min-h-[80px]" />;
+  }
 
   const items: [string, number][] = [
     ["Days", t.days],
