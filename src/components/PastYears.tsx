@@ -30,21 +30,12 @@ const editions: Edition[] = [
       "DJ Akram Night",
       "Final Team Result — Champions Crowned",
     ],
-    scores: [
-      { house: "Agniyas", pts: 1845, isChampion: true },
-      { house: "Suryas", pts: 1720 },
-      { house: "Dhronas", pts: 1612 },
-      { house: "Rudras", pts: 1488 },
-      { house: "Marutas", pts: 1394 },
-      { house: "Vajras", pts: 1245 },
-    ],
     images: [
-      "https://images.squarespace-cdn.com/content/v1/590ecdedc534a56c75a1aab7/1758650258176-MUNKJBJRC28ATD6SGQ5C/WhatsApp+Image+2025-09-11+at+7.47.35+PM.jpeg?format=500w",
+      "/gallery/2025-1.png",
       "https://images.squarespace-cdn.com/content/v1/590ecdedc534a56c75a1aab7/1758650536012-OUK3BX19A6XIKHYMXQIN/WhatsApp+Image+2025-09-11+at+7.47.38+PM+%281%29.jpeg?format=500w",
       "https://images.squarespace-cdn.com/content/v1/590ecdedc534a56c75a1aab7/1758650722014-ZREEGBY3YYY9VC36BU7W/WhatsApp+Image+2025-09-11+at+7.47.49+PM+%282%29.jpeg?format=500w",
       "https://images.squarespace-cdn.com/content/v1/590ecdedc534a56c75a1aab7/1758650902469-UU45JJI7X199RDQ3KMNK/WhatsApp+Image+2025-09-11+at+7.47.52+PM+%285%29.jpeg?format=500w",
-      "https://images.squarespace-cdn.com/content/v1/590ecdedc534a56c75a1aab7/1745947384758-6HG70L6FMU0YAMRLV1NK/Both+1.jpeg?format=500w",
-      "https://images.squarespace-cdn.com/content/v1/590ecdedc534a56c75a1aab7/1745947391485-NVHGRAT1S4I6Z2PPBFBQ/VA+1.jpeg?format=500w",
+      "/gallery/2025-6.png",
     ],
     accent: "oklch(0.78 0.16 80)",
   },
@@ -52,7 +43,7 @@ const editions: Edition[] = [
     year: "2024",
     title: "SIMMAM 2024 — Where Passion Met Expression",
     champion: "Suryas",
-    headliner: "Cultural Showcase • Music • Dance • Drama",
+    headliner: "Nikki Galrani  •  Karthick",
     days: 3,
     participants: 3600,
     highlights: [
@@ -175,13 +166,12 @@ export function PastYears() {
                 </div>
 
                 {/* Image mosaic */}
-                <div className="lg:col-span-2 grid grid-cols-3 grid-rows-3 gap-3 auto-rows-[140px] md:auto-rows-[170px]">
-                  {e.images.slice(0, 6).map((src, i) => (
+                <div className="lg:col-span-2 grid grid-cols-4 grid-rows-2 gap-3 auto-rows-[140px] md:auto-rows-[170px]">
+                  {e.images.slice(0, 5).map((src, i) => (
                     <div
                       key={i}
-                      className={`relative rounded-2xl overflow-hidden glass hover-lift group ${
-                        i === 0 ? "col-span-2 row-span-2" : ""
-                      }`}
+                      className={`relative rounded-2xl overflow-hidden glass hover-lift group ${i === 0 ? "col-span-2 row-span-2" : ""
+                        }`}
                     >
                       <img
                         src={src}
@@ -244,9 +234,8 @@ function StatCard({
             {label.toUpperCase()}
           </div>
           <div
-            className={`font-display ${
-              small ? "text-base" : "text-xl"
-            } text-gradient-gold mt-1 truncate`}
+            className={`font-display ${small ? "text-base" : "text-xl"
+              } text-gradient-gold mt-1 truncate`}
           >
             {value}
           </div>
