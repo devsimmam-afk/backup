@@ -71,13 +71,13 @@ function CaptainsPage() {
 
                   <div className="relative flex items-center gap-4 mb-6">
                     <div
-                      className="w-16 h-16 rounded-full grid place-items-center bg-white/5 border-2 overflow-hidden"
+                      className="shrink-0 w-16 h-16 rounded-full flex items-center justify-center bg-black border-2 overflow-hidden"
                       style={{
                         borderColor: h.accent,
                         boxShadow: `0 0 32px ${h.glow}`,
                       }}
                     >
-                      <img src={h.logo} alt={`${h.name} crest`} className="w-full h-full object-contain p-2.5" />
+                      <img src={h.logo} alt={`${h.name} crest`} className={`w-full h-full object-cover ${h.logoScale || "scale-125"}`} />
                     </div>
                     <div>
                       <div className="text-[10px] tracking-[0.3em] text-foreground/50">

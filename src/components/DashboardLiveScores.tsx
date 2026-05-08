@@ -46,6 +46,7 @@ type HouseScore = {
   gradient: string;
   breakdown: { winners: number; runners: number; participation: number };
   logo: string;
+  logoScale?: string;
 };
 
 export function DashboardLiveScores() {
@@ -63,6 +64,7 @@ export function DashboardLiveScores() {
         gradient: h.gradient,
         breakdown: { ...h.breakdown },
         logo: h.logo,
+        logoScale: h.logoScale,
       }))
       .sort((a, b) => a.name.localeCompare(b.name))
   );
@@ -178,12 +180,12 @@ export function DashboardLiveScores() {
                       </span>
                       
                       <div
-                        className="w-10 h-10 rounded-full flex items-center justify-center border-2 overflow-hidden bg-white/5"
+                        className="w-10 h-10 rounded-full flex items-center justify-center bg-black border-2 overflow-hidden shrink-0"
                         style={{
                           borderColor: house.accent,
                         }}
                       >
-                        <img src={house.logo} alt={`${house.name} crest`} className="w-full h-full object-contain p-1.5" />
+                        <img src={house.logo} alt={`${house.name} crest`} className={`w-full h-full object-cover ${house.logoScale || "scale-125"}`} />
                       </div>
 
                       <div className="flex flex-col">

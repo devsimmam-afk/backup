@@ -14,6 +14,7 @@ export type House = {
   gradient: string;
   breakdown: { winners: number; runners: number; participation: number };
   logo: string;
+  logoScale?: string;
 };
 
 export const houses: House[] = [
@@ -33,6 +34,7 @@ export const houses: House[] = [
     gradient: "linear-gradient(135deg, #FF6B00, #FF3D00)",
     breakdown: { winners: 0, runners: 0, participation: 0 },
     logo: "/houses/agniyas.png",
+    logoScale: "scale-150",
   },
   {
     name: "Dhronas",
@@ -50,6 +52,7 @@ export const houses: House[] = [
     gradient: "linear-gradient(135deg, #B90000, #7A0000)",
     breakdown: { winners: 0, runners: 0, participation: 0 },
     logo: "/houses/dronas.jpg",
+    logoScale: "scale-125",
   },
   {
     name: "Marutas",
@@ -67,6 +70,7 @@ export const houses: House[] = [
     gradient: "linear-gradient(135deg, #FFD700, #FFB300)",
     breakdown: { winners: 0, runners: 0, participation: 0 },
     logo: "/houses/marutas.png",
+    logoScale: "scale-150",
   },
   {
     name: "Rudras",
@@ -84,6 +88,7 @@ export const houses: House[] = [
     gradient: "linear-gradient(135deg, #FFFFFF, #B0BEC5)",
     breakdown: { winners: 0, runners: 0, participation: 0 },
     logo: "/houses/rudras.png",
+    logoScale: "scale-150",
   },
   {
     name: "Suryas",
@@ -101,6 +106,7 @@ export const houses: House[] = [
     gradient: "linear-gradient(135deg, #8A2BE2, #4B0082)",
     breakdown: { winners: 0, runners: 0, participation: 0 },
     logo: "/houses/suryas.png",
+    logoScale: "scale-150",
   },
   {
     name: "Vajras",
@@ -118,5 +124,6 @@ export const houses: House[] = [
     gradient: "linear-gradient(135deg, #50C878, #008000)",
     breakdown: { winners: 0, runners: 0, participation: 0 },
     logo: "/houses/vajras.png",
+    logoScale: "scale-125",
   },
 ];
