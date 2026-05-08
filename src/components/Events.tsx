@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { Tilt3D } from "./Tilt3D";
 import { X, Search } from "lucide-react";
 import { SectionHeader } from "./Dashboard";
@@ -7,9 +8,15 @@ import { allEvents, type Event } from "../lib/eventsData";
 const categories = ["All", "Tech", "Non-Tech", "Sports"];
 
 export function Events() {
+  const navigate = useNavigate();
   const [filter, setFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+
+  const handleRegister = (eventName: string) => {
+    setSelectedEvent(null);
+    navigate({ to: "/register", search: { event: eventName } });
+  };
 
   const list = allEvents.filter((e) => {
     const matchesCategory = filter === "All" || e.mainCategory === filter;
@@ -125,7 +132,10 @@ export function Events() {
                 </ul>
               </div>
 
-              <button className="w-full py-3 rounded-xl text-sm font-bold bg-gradient-to-r from-[var(--crimson)] to-[var(--gold)] text-background hover:shadow-[var(--shadow-glow-red)] transition-all">
+              <button
+                onClick={() => handleRegister(selectedEvent.name)}
+                className="w-full py-3 rounded-xl text-sm font-bold bg-gradient-to-r from-[var(--crimson)] to-[var(--gold)] text-background hover:shadow-[var(--shadow-glow-red)] transition-all"
+              >
                 Register for this Event
               </button>
             </div>

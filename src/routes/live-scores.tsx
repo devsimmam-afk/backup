@@ -3,29 +3,28 @@ import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Particles } from "@/components/Particles";
-import { PastYears } from "@/components/PastYears";
-import { Gallery } from "@/components/Gallery";
+import { DashboardLiveScores } from "@/components/DashboardLiveScores";
 
-export const Route = createFileRoute("/archive-gallery")({
+export const Route = createFileRoute("/live-scores")({
   head: () => ({
     meta: [
-      { title: "Archive — SIMMAM 2026" },
+      { title: "Dashboard & Live Scores — SIMMAM 2026" },
       {
         name: "description",
         content:
-          "Explore SIMMAM archive highlights and memories together on one immersive page.",
+          "Track the SIMMAM 2026 dashboard and live house rankings in one dynamic experience.",
       },
-      { property: "og:title", content: "SIMMAM Archive" },
+      { property: "og:title", content: "SIMMAM Dashboard & Live Scores" },
       {
         property: "og:description",
-        content: "A combined page for legacy highlights and festival memories.",
+        content: "Real-time house momentum, rankings and festival metrics.",
       },
     ],
   }),
-  component: ArchiveGalleryPage,
+  component: DashboardLivePage,
 });
 
-function ArchiveGalleryPage() {
+function DashboardLivePage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <Navbar />
@@ -41,8 +40,7 @@ function ArchiveGalleryPage() {
           </Link>
         </div>
 
-        <PastYears />
-        <Gallery />
+        <DashboardLiveScores />
       </main>
 
       <Footer />

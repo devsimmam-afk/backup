@@ -62,7 +62,7 @@ function CaptainsPage() {
               <Tilt3D key={h.short} max={6}>
                 <div
                   className="relative glass-strong rounded-3xl p-6 md:p-8 overflow-hidden h-full"
-                  style={{ borderColor: h.accent.replace(")", " / 0.4)") }}
+                  style={{ borderColor: h.accent + "66" }}
                 >
                   <div
                     className="absolute -top-24 -right-24 w-72 h-72 rounded-full blur-3xl opacity-50"
@@ -71,9 +71,9 @@ function CaptainsPage() {
 
                   <div className="relative flex items-center gap-4 mb-6">
                     <div
-                      className="w-16 h-16 rounded-2xl grid place-items-center"
+                      className="w-16 h-16 rounded-2xl grid place-items-center texture-overlay overflow-hidden"
                       style={{
-                        background: `linear-gradient(135deg, ${h.accent}, oklch(0.18 0.04 25))`,
+                        background: h.gradient,
                         boxShadow: `0 0 32px ${h.glow}`,
                       }}
                     >
@@ -97,6 +97,7 @@ function CaptainsPage() {
                       year={h.captain.year}
                       phone={h.captain.phone}
                       accent={h.accent}
+                      gradient={h.gradient}
                     />
                     <PersonCard
                       role="Vice Captain"
@@ -104,6 +105,7 @@ function CaptainsPage() {
                       year={h.vice.year}
                       phone={h.vice.phone}
                       accent={h.accent}
+                      gradient={h.gradient}
                     />
                   </div>
 
@@ -146,6 +148,7 @@ function PersonCard({
   year: string;
   phone: string;
   accent: string;
+  gradient: string;
 }) {
   const initials = name
     .split(" ")
@@ -156,10 +159,10 @@ function PersonCard({
     <div className="relative glass rounded-2xl p-4 overflow-hidden">
       <div className="flex items-center gap-3">
         <div
-          className="w-14 h-14 rounded-full grid place-items-center font-display font-bold text-lg shrink-0"
+          className="w-14 h-14 rounded-full grid place-items-center font-display font-bold text-lg shrink-0 texture-overlay overflow-hidden"
           style={{
-            background: `linear-gradient(135deg, ${accent}, oklch(0.20 0.04 25))`,
-            boxShadow: `0 0 20px ${accent.replace(")", " / 0.5)")}`,
+            background: gradient,
+            boxShadow: `0 0 20px ${accent}80`,
           }}
         >
           {initials}

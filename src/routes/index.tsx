@@ -5,7 +5,6 @@ import { Hero } from "@/components/Hero";
 import { DashboardLiveScores } from "@/components/DashboardLiveScores";
 import { Leaderboard } from "@/components/Leaderboard";
 import { Teams } from "@/components/Teams";
-import { Gallery } from "@/components/Gallery";
 import { Showcase3D } from "@/components/Showcase3D";
 import { Faculty } from "@/components/Faculty";
 import { PastYears } from "@/components/PastYears";
@@ -58,7 +57,6 @@ function Index() {
         <Showcase3D />
         <Leaderboard />
         <PastYears />
-        <Gallery />
         <Faculty />
       </main>
       <Footer />

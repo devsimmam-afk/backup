@@ -15,10 +15,12 @@ type Stat = {
   accent: "gold" | "red";
 };
 
+import { allEvents } from "@/lib/eventsData";
+
 const stats: Stat[] = [
-  { icon: Users, label: "Total Houses", value: 6, hint: "Rudras, Suryas, Dronas, Agniyas, Marutas, Vajraas", accent: "gold" },
-  { icon: Flame, label: "Total Participants", value: 4280, hint: "Across all events", accent: "red" },
-  { icon: Trophy, label: "Total Events", value: 48, hint: "Cultural & technical", accent: "gold" },
+  { icon: Users, label: "Total Teams", value: 6, hint: "Agniyas, Dhronas, Marutas, Rudras, Suryas, Vajras", accent: "gold" },
+  { icon: Flame, label: "Total Participants", value: 0, hint: "Across all events", accent: "red" },
+  { icon: Trophy, label: "Total Events", value: allEvents.length, hint: "Original baseline: 48 events", accent: "gold" },
   { icon: Building2, label: "Festival Days", value: 3, hint: "Three days. One legend.", accent: "red" },
   { icon: Crown, label: "2025 Champion", value: 1, suffix: " — Agniyas", hint: "Last year's overall winners", accent: "gold" },
   { icon: Award, label: "Highest Score", value: 1845, hint: "Agniyas — SIMMAM 2025", accent: "red" },
@@ -41,6 +43,7 @@ type HouseScore = {
   points: number;
   color: string;
   accent: string;
+  gradient: string;
   breakdown: { winners: number; runners: number; participation: number };
 };
 
@@ -56,31 +59,11 @@ export function DashboardLiveScores() {
         points: h.points2025,
         color: h.accent,
         accent: h.accent,
+        gradient: h.gradient,
         breakdown: { ...h.breakdown },
       }))
-      .sort((a, b) => b.points - a.points)
+      .sort((a, b) => a.name.localeCompare(b.name))
   );
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setHouseScores((prev) =>
-        [...prev]
-          .map((s) => {
-            const added = Math.floor(Math.random() * 8);
-            return {
-              ...s,
-              points: s.points + added,
-              breakdown: {
-                ...s.breakdown,
-                winners: s.breakdown.winners + added, // add random points to winners to balance
-              },
-            };
-          })
-          .sort((a, b) => b.points - a.points)
-      );
-    }, 2200);
-    return () => clearInterval(id);
-  }, []);
 
   const max = Math.max(...houseScores.map((s) => s.points));
   const selectedHouseData = houseScores.find((h) => h.name === selectedHouse);
@@ -222,14 +205,14 @@ export function DashboardLiveScores() {
                   </div>
                   <div className="h-3 rounded-full bg-white/5 overflow-hidden">
                     <div
-                      className="h-full rounded-full transition-all duration-700 relative"
+                      className="h-full rounded-full transition-all duration-700 relative texture-overlay"
                       style={{
-                        width: `${(house.points / max) * 100}%`,
-                        background: `linear-gradient(90deg, ${house.accent}, var(--gold))`,
-                        boxShadow: `0 0 20px ${house.accent}`,
+                        width: `${max > 0 ? (house.points / max) * 100 : 0}%`,
+                        background: house.gradient,
+                        boxShadow: `0 0 14px ${house.color}`,
                       }}
                     >
-                      <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,oklch(1_0_0/0.4),transparent)] bg-[length:200%_100%] animate-[shimmer_2s_linear_infinite]" />
+                      <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,oklch(1_0_0/0.25),transparent)] bg-[length:200%_100%] animate-[shimmer_2s_linear_infinite]" />
                     </div>
                   </div>
 
@@ -243,7 +226,7 @@ export function DashboardLiveScores() {
                              <span className="font-bold text-gold">{house.breakdown.winners}</span>
                           </div>
                           <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
-                             <div className="h-full rounded-full transition-all duration-700" style={{ width: `${(house.breakdown.winners / house.points) * 100}%`, background: house.accent }} />
+                             <div className="h-full rounded-full transition-all duration-700 texture-overlay" style={{ width: `${house.points > 0 ? (house.breakdown.winners / house.points) * 100 : 0}%`, background: house.gradient }} />
                           </div>
                         </div>
                         <div>
@@ -252,7 +235,7 @@ export function DashboardLiveScores() {
                              <span className="font-bold text-gold">{house.breakdown.runners}</span>
                           </div>
                           <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
-                             <div className="h-full rounded-full transition-all duration-700 opacity-70" style={{ width: `${(house.breakdown.runners / house.points) * 100}%`, background: house.accent }} />
+                             <div className="h-full rounded-full transition-all duration-700 opacity-70 texture-overlay" style={{ width: `${house.points > 0 ? (house.breakdown.runners / house.points) * 100 : 0}%`, background: house.gradient }} />
                           </div>
                         </div>
                         <div>
@@ -261,7 +244,7 @@ export function DashboardLiveScores() {
                              <span className="font-bold text-gold">{house.breakdown.participation}</span>
                           </div>
                           <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
-                             <div className="h-full rounded-full transition-all duration-700 opacity-40" style={{ width: `${(house.breakdown.participation / house.points) * 100}%`, background: house.accent }} />
+                             <div className="h-full rounded-full transition-all duration-700 opacity-40 texture-overlay" style={{ width: `${house.points > 0 ? (house.breakdown.participation / house.points) * 100 : 0}%`, background: house.gradient }} />
                           </div>
                         </div>
                       </div>

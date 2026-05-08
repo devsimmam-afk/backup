@@ -1,4 +1,4 @@
-import { Calendar, Music2, Trophy, Users } from "lucide-react";
+import { Calendar, Crown, Music2, Trophy, Users } from "lucide-react";
 import { SectionHeader } from "./Dashboard";
 import { Tilt3D } from "./Tilt3D";
 
@@ -7,9 +7,10 @@ type Edition = {
   title: string;
   champion: string;
   headliner: string;
-  highlights: string[];
   days: number;
   participants: number;
+  highlights: string[];
+  scores?: { house: string; pts: number; isChampion?: boolean }[];
   images: string[];
   accent: string;
 };
@@ -28,6 +29,14 @@ const editions: Edition[] = [
       "Day 3 — LIVE Concert with Vijay Antony",
       "DJ Akram Night",
       "Final Team Result — Champions Crowned",
+    ],
+    scores: [
+      { house: "Agniyas", pts: 1845, isChampion: true },
+      { house: "Suryas", pts: 1720 },
+      { house: "Dhronas", pts: 1612 },
+      { house: "Rudras", pts: 1488 },
+      { house: "Marutas", pts: 1394 },
+      { house: "Vajras", pts: 1245 },
     ],
     images: [
       "https://images.squarespace-cdn.com/content/v1/590ecdedc534a56c75a1aab7/1758650258176-MUNKJBJRC28ATD6SGQ5C/WhatsApp+Image+2025-09-11+at+7.47.35+PM.jpeg?format=500w",
@@ -70,7 +79,7 @@ export function PastYears() {
     <section id="archive" className="relative py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
-          eyebrow="The Archive"
+          eyebrow="Gallery"
           title="Editions of SIMMAM"
           subtitle="A walk through the years that built the legacy. Every champion. Every encore. Every memory."
         />
@@ -139,6 +148,30 @@ export function PastYears() {
                       ))}
                     </ul>
                   </div>
+
+                  {e.scores && (
+                    <div className="glass rounded-2xl p-5 border border-gold/30">
+                      <div className="text-[10px] tracking-[0.3em] text-gold/70 mb-3 flex items-center justify-between">
+                        <span>2025 STANDINGS</span>
+                        <Trophy className="w-3.5 h-3.5 text-gold" />
+                      </div>
+                      <div className="space-y-3">
+                        {e.scores.sort((a, b) => b.pts - a.pts).map((score) => (
+                          <div key={score.house} className="flex justify-between items-center text-sm">
+                            <div className="flex items-center gap-2">
+                              <span className={score.isChampion ? "text-gold font-bold" : "text-foreground/80"}>
+                                {score.house}
+                              </span>
+                              {score.isChampion && <Crown className="w-3 h-3 text-gold" />}
+                            </div>
+                            <span className={score.isChampion ? "text-gold font-bold tabular-nums" : "text-foreground/60 tabular-nums"}>
+                              {score.pts.toLocaleString()} pts
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Image mosaic */}

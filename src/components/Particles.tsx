@@ -1,19 +1,36 @@
-import { useMemo } from "react";
+import { useState, useEffect } from "react";
 
 export function Particles({ count = 30, className = "" }: { count?: number; className?: string }) {
-  const items = useMemo(
-    () =>
-      Array.from({ length: count }).map((_, i) => ({
-        id: i,
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        size: Math.random() * 4 + 2,
-        delay: Math.random() * 6,
-        duration: Math.random() * 6 + 6,
-        gold: Math.random() > 0.5,
-      })),
-    [count],
-  );
+  type ParticleItem = {
+    id: number;
+    left: number;
+    top: number;
+    size: number;
+    delay: number;
+    duration: number;
+    gold: boolean;
+  };
+
+  const [items, setItems] = useState<ParticleItem[]>([]);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const generatedItems = Array.from({ length: count }).map((_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      size: Math.random() * 4 + 2,
+      delay: Math.random() * 6,
+      duration: Math.random() * 6 + 6,
+      gold: Math.random() > 0.5,
+    }));
+    setItems(generatedItems);
+    setMounted(true);
+  }, [count]);
+
+  if (!mounted || items.length === 0) {
+    return <div className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`} />;
+  }
 
   return (
     <div className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}>

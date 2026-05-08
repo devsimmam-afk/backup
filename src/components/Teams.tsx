@@ -24,7 +24,7 @@ export function Teams() {
                 <Tilt3D max={6}>
                   <div
                     className="group relative glass rounded-2xl overflow-hidden hover-lift h-full"
-                    style={{ borderColor: t.accent.replace(")", " / 0.4)") }}
+                    style={{ borderColor: t.accent + "66" }}
                   >
                     <div
                       className="absolute inset-0 opacity-30 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none"
@@ -38,9 +38,9 @@ export function Teams() {
                   >
                     <div className="flex items-start gap-4">
                       <div
-                        className="shrink-0 w-20 h-20 rounded-2xl grid place-items-center font-display font-bold text-2xl shadow-lg [transform-style:preserve-3d]"
+                        className="shrink-0 w-20 h-20 rounded-2xl grid place-items-center font-display font-bold text-2xl shadow-lg [transform-style:preserve-3d] texture-overlay overflow-hidden"
                         style={{
-                          background: `linear-gradient(135deg, ${t.accent}, oklch(0.18 0.04 25))`,
+                          background: t.gradient,
                           boxShadow: `0 0 32px ${t.glow}, inset 0 1px 0 rgba(255,255,255,0.2)`,
                           transform: "translateZ(30px)",
                         }}

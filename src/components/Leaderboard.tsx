@@ -85,7 +85,7 @@ export function Leaderboard() {
                     className="h-full rounded-full transition-all duration-700 group-hover:brightness-125"
                     style={{
                       width: `${(t.points2025 / max) * 100}%`,
-                      background: `linear-gradient(90deg, ${t.accent}, var(--gold))`,
+                      background: t.accent,
                       boxShadow: `0 0 14px ${t.glow}`,
                     }}
                   />

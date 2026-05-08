@@ -4,32 +4,74 @@ import { Tilt3D } from "./Tilt3D";
 
 const orbs = [
   {
-    icon: Crown,
-    label: "Champions Cup",
-    sub: "The crown of SIMMAM",
+    image: "/awards/overall_winner.png",
+    label: "Overall Winner",
+    sub: "The ultimate champions",
     color: "oklch(0.85 0.17 85)",
     glow: "oklch(0.88 0.18 88)",
   },
   {
-    icon: Trophy,
-    label: "Runner-Up Shield",
-    sub: "Silver glory awaits",
+    image: "/awards/overall_runner.png",
+    label: "Overall Runner",
+    sub: "Silver glory",
     color: "oklch(0.85 0.02 90)",
     glow: "oklch(0.92 0.02 90)",
   },
   {
-    icon: Medal,
-    label: "Bronze Medallion",
-    sub: "Honors of the brave",
+    image: "/awards/best_tech.png",
+    label: "Best Tech",
+    sub: "Masters of innovation",
+    color: "oklch(0.65 0.2 250)",
+    glow: "oklch(0.7 0.22 255)",
+  },
+  {
+    image: "/awards/best_nontech.png",
+    label: "Best Non-Tech",
+    sub: "Creative excellence",
+    color: "oklch(0.75 0.2 30)",
+    glow: "oklch(0.8 0.22 35)",
+  },
+  {
+    image: "/awards/cultural.png",
+    label: "Cultural",
+    sub: "Soul of SIMMAM",
     color: "oklch(0.62 0.14 50)",
     glow: "oklch(0.72 0.18 55)",
   },
   {
-    icon: Sparkles,
-    label: "Spirit Award",
-    sub: "For the loudest tribe",
-    color: "oklch(0.55 0.22 27)",
-    glow: "oklch(0.62 0.27 25)",
+    image: "/awards/enthusiastic_team.png",
+    label: "Enthusiastic Team",
+    sub: "The loudest tribe",
+    color: "oklch(0.65 0.22 27)",
+    glow: "oklch(0.7 0.25 25)",
+  },
+  {
+    image: "/awards/best_sports.png",
+    label: "Best Sports",
+    sub: "Athletic dominance",
+    color: "oklch(0.8 0.15 65)",
+    glow: "oklch(0.85 0.18 70)",
+  },
+  {
+    image: "/awards/best_student.png",
+    label: "Best Student",
+    sub: "Academic & extra-curricular",
+    color: "oklch(0.7 0.15 220)",
+    glow: "oklch(0.75 0.18 225)",
+  },
+  {
+    image: "/awards/max_participation.png",
+    label: "Maximum Participation",
+    sub: "Strength in numbers",
+    color: "oklch(0.82 0.18 95)",
+    glow: "oklch(0.88 0.2 95)",
+  },
+  {
+    image: "/awards/active_dept.png",
+    label: "Most Active Dept",
+    sub: "Leading the charge",
+    color: "oklch(0.68 0.18 160)",
+    glow: "oklch(0.75 0.2 165)",
   },
 ];
 
@@ -54,7 +96,7 @@ export function Showcase3D() {
           subtitle="Hover to feel the weight. Each award represents a season of brilliance."
         />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
           {orbs.map((o, i) => (
             <Tilt3D key={o.label} max={18}>
               <div className="relative glass-strong rounded-3xl p-6 pb-7 text-center overflow-hidden h-full neon-border">
@@ -89,12 +131,12 @@ export function Showcase3D() {
                       className="absolute top-3 left-5 w-10 h-6 rounded-full opacity-80 blur-md"
                       style={{ background: "oklch(1 0 0 / 0.7)" }}
                     />
-                    {/* Icon */}
+                    {/* Image */}
                     <div
-                      className="absolute inset-0 grid place-items-center"
+                      className="absolute inset-0 grid place-items-center p-3"
                       style={{ transform: "translateZ(20px)" }}
                     >
-                      <o.icon className="w-10 h-10 text-background drop-shadow-lg" />
+                      <img src={o.image} alt={o.label} className="w-full h-full object-cover rounded-full mix-blend-screen opacity-90 drop-shadow-2xl" />
                     </div>
                   </div>
                 </div>
