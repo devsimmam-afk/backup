@@ -17,7 +17,7 @@ export function Faculty() {
     <section id="faculty" className="relative py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
-          eyebrow="Faculty Coordinators"
+          eyebrow="Faculty Captains"
           title="The Conductors of SIMMAM"
           subtitle="Mentors guiding every spotlight, every score, every standing ovation."
         />

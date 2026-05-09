@@ -7,23 +7,23 @@ import { SectionHeader } from "./Dashboard";
 import { houses } from "../lib/houses";
 
 type Stat = {
-  icon: LucideIcon;
   label: string;
   value: number;
   suffix?: string;
   hint: string;
   accent: "gold" | "red";
+  href?: string;
 };
 
 import { allEvents } from "@/lib/eventsData";
 
 const stats: Stat[] = [
-  { icon: Users, label: "Total Teams", value: 6, hint: "Agniyas, Dhronas, Marutas, Rudras, Suryas, Vajras", accent: "gold" },
-  { icon: Flame, label: "Total Participants", value: 0, hint: "Across all events", accent: "red" },
-  { icon: Trophy, label: "Total Events", value: 150, hint: "", accent: "gold" },
-  { icon: Building2, label: "Festival Days", value: 3, hint: "Three days. One legend.", accent: "red" },
-  { icon: Crown, label: "2025 Champion", value: 1, suffix: " — Agniyas", hint: "Last year's overall winners", accent: "gold" },
-  { icon: Award, label: "Highest Score", value: 0, hint: "Agniyas — SIMMAM 2025", accent: "red" },
+  { label: "Total Teams", value: 6, hint: "Agniyas, Dhronas, Marutas, Rudras, Suryas, Vajras", accent: "gold", href: "/#teams" },
+  { label: "Total Participants", value: 0, hint: "Across all events", accent: "red" },
+  { label: "Total Events", value: 150, hint: "", accent: "gold", href: "/events" },
+  { label: "Festival Days", value: 3, hint: "Three days. One legend.", accent: "red" },
+  { label: "2025 Champion", value: 1, suffix: " — Agniyas", hint: "Last year's overall winners", accent: "gold", href: "/#leaderboard" },
+  { label: "Highest Score", value: 45900, hint: "Agniyas — SIMMAM 2025", accent: "red", href: "/#leaderboard" },
 ];
 
 // House element icons
@@ -83,64 +83,52 @@ export function DashboardLiveScores() {
 
         {/* Stats Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mb-16">
-          {stats.map((s, i) => (
-            <Tilt3D key={s.label} max={9}>
-              <div
-                className="group relative bg-black/60 border border-white/10 rounded-2xl p-6 hover-lift overflow-hidden animate-rise-in h-full"
-                style={{ animationDelay: `${i * 80}ms` }}
-              >
-                {/* corner glow */}
-                <div
-                  className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-40 group-hover:opacity-70 transition"
-                  style={{
-                    background:
-                      s.accent === "gold"
-                        ? "oklch(0.78 0.16 80 / 0.7)"
-                        : "oklch(0.55 0.22 27 / 0.7)",
-                  }}
-                />
-                <div className="relative flex items-start justify-between">
+          {stats.map((s, i) => {
+            const Wrapper = s.href ? "a" : "div";
+            return (
+              <Tilt3D key={s.label} max={9}>
+                <Wrapper
+                  {...(s.href ? { href: s.href } : {})}
+                  className="block group relative p-[1px] rounded-2xl overflow-hidden hover-lift animate-rise-in h-full cursor-pointer"
+                  style={{ animationDelay: `${i * 80}ms` }}
+                >
+                  {/* Glowing spinning border */}
                   <div
-                    className={`p-3 rounded-xl ${
-                      s.accent === "gold"
-                        ? "bg-gold/10 text-gold neon-border"
-                        : "bg-[var(--crimson)]/15 text-crimson neon-border-red"
-                    }`}
-                  >
-                    <s.icon className="w-5 h-5" />
-                  </div>
-                  <span className="text-[10px] tracking-[0.3em] text-foreground/50">
-                    LIVE
-                  </span>
-                </div>
-
-                <div className="relative mt-6">
-                  <div className="font-display text-5xl font-bold text-gradient-gold">
-                    <Counter to={s.value} suffix={s.suffix} />
-                  </div>
-                  <div className="mt-2 text-base text-foreground/90 font-medium">
-                    {s.label}
-                  </div>
-                  <div className="text-xs text-foreground/55 mt-1">{s.hint}</div>
-                </div>
-
-                {/* progress sparkline */}
-                <div className="relative mt-5 h-1 rounded-full bg-white/5 overflow-hidden">
-                  <div
-                    className="h-full rounded-full"
+                    className="absolute -inset-[150%] animate-[spin_4s_linear_infinite] opacity-50 group-hover:opacity-100 transition-opacity duration-500"
                     style={{
-                      width: "78%",
-                      background:
-                        s.accent === "gold"
-                          ? "linear-gradient(90deg, var(--gold), var(--crimson))"
-                          : "linear-gradient(90deg, var(--crimson-glow), var(--gold))",
-                      boxShadow: "0 0 12px var(--gold)",
+                      background: `conic-gradient(from 0deg, transparent 75%, ${
+                        s.accent === "gold" ? "var(--gold)" : "var(--crimson)"
+                      } 100%)`,
                     }}
                   />
-                </div>
-              </div>
-            </Tilt3D>
-          ))}
+
+                  {/* Inner card content with gradient */}
+                  <div className="relative h-full bg-gradient-to-br from-zinc-900/95 to-black/95 rounded-[15px] p-6 z-10 flex flex-col justify-center">
+                    {/* corner glow */}
+                    <div
+                      className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-30 group-hover:opacity-60 transition duration-500 pointer-events-none"
+                      style={{
+                        background:
+                          s.accent === "gold"
+                            ? "oklch(0.78 0.16 80 / 0.7)"
+                            : "oklch(0.55 0.22 27 / 0.7)",
+                      }}
+                    />
+
+                    <div className="relative mt-2">
+                      <div className="font-display text-5xl font-bold text-gradient-gold">
+                        <Counter to={s.value} suffix={s.suffix} />
+                      </div>
+                      <div className="mt-4 text-base text-foreground/90 font-medium">
+                        {s.label}
+                      </div>
+                      <div className="text-xs text-foreground/55 mt-1">{s.hint}</div>
+                    </div>
+                  </div>
+                </Wrapper>
+              </Tilt3D>
+            );
+          })}
         </div>
 
         {/* Live Scores Section with House Logos */}

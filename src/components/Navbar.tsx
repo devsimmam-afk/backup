@@ -7,17 +7,17 @@ import { LionEmblem } from "./LionEmblem";
    Link definitions
 ───────────────────────────────────────────── */
 const leftLinks = [
-  { href: "/#home",        label: "Home" },
-  { href: "/#dashboard",   label: "Dashboard" },
-  { href: "/#teams",       label: "Teams" },
+  { href: "/#home", label: "Home" },
+  { href: "/#dashboard", label: "Dashboard" },
+  { href: "/#teams", label: "Teams" },
   { href: "/#leaderboard", label: "SIMMAM'25" },
 ];
 
 const rightLinks = [
-  { href: "/events",    label: "Events" },
-  { href: "/captains",  label: "Crew" },
-  { href: "/#archive",  label: "Gallery" },
-  { href: "/#contact",  label: "Contact" },
+  { href: "/events", label: "Events" },
+  { href: "/captains", label: "Crew" },
+  { href: "/#archive", label: "Gallery" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 const allLinks = [...leftLinks, ...rightLinks];
@@ -36,7 +36,7 @@ const desktopUnderline =
 ───────────────────────────────────────────── */
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen]         = useState(false);
+  const [open, setOpen] = useState(false);
 
   /* Scroll detection */
   useEffect(() => {

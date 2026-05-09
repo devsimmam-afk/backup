@@ -13,7 +13,7 @@ export const Route = createFileRoute("/captains")({
       {
         name: "description",
         content:
-          "Meet the crew and faculty coordinators of all six SIMMAM 2026 houses — Rudras, Suryas, Dronas, Agniyas, Marutas and Vajraas.",
+          "Meet the crew and faculty captains of all six SIMMAM 2026 houses — Rudras, Suryas, Dronas, Agniyas, Marutas and Vajraas.",
       },
       { property: "og:title", content: "The Elite Crew of SIMMAM 2026" },
       {
@@ -86,6 +86,16 @@ function CaptainsPage() {
             </div>
           </div>
 
+          <div className="text-center mb-8 mt-12">
+            <div className="inline-flex items-center gap-3">
+              <span className="h-px w-10 bg-gradient-to-r from-transparent to-[var(--gold)]" />
+              <span className="text-[10px] md:text-xs tracking-[0.4em] text-gold/80">
+                CAPTAINS AND VICE CAPTAINS
+              </span>
+              <span className="h-px w-10 bg-gradient-to-l from-transparent to-[var(--gold)]" />
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-6">
             {houses.map((h) => (
               <Tilt3D key={h.short} max={6}>
@@ -122,7 +132,7 @@ function CaptainsPage() {
                   <div className="relative mb-4 glass rounded-xl px-4 py-3 flex items-center justify-between text-sm">
                     <div>
                       <div className="text-[10px] tracking-[0.25em] text-foreground/50">
-                        FACULTY COORDINATOR
+                        FACULTY CAPTAIN
                       </div>
                       <div className="text-foreground/90">{formatName(h.faculty.name)}</div>
                     </div>

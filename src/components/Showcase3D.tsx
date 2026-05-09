@@ -6,52 +6,62 @@ const orbs = [
   {
     image: "/awards/overall_winner.png",
     label: "Overall Winner",
-    glow: "#ffd700", // Golden glow
+    color: "oklch(0.85 0.17 85)",
+    glow: "oklch(0.88 0.18 88)",
   },
   {
     image: "/awards/overall_runner.png",
     label: "Overall Runner",
-    glow: "#e0e0e0", // Silver/White glow
+    color: "oklch(0.85 0.02 90)",
+    glow: "oklch(0.92 0.02 90)",
   },
   {
     image: "/awards/best_tech.png",
     label: "Best Tech Team",
-    glow: "#00e5ff", // Blue/Cyan glow
+    color: "oklch(0.65 0.2 250)",
+    glow: "oklch(0.7 0.22 255)",
   },
   {
     image: "/awards/best_nontech.png",
     label: "Best Non-Tech Team",
-    glow: "#ff9100", // Orange glow
+    color: "oklch(0.75 0.2 30)",
+    glow: "oklch(0.8 0.22 35)",
   },
   {
     image: "/awards/cultural.png",
     label: "Best Cultural Team",
-    glow: "#b300ff", // Purple/Violet glow
+    color: "oklch(0.62 0.14 50)",
+    glow: "oklch(0.72 0.18 55)",
   },
   {
     image: "/awards/enthusiastic_team.png",
     label: "Best Enthusiastic Team",
-    glow: "#ff1744", // Red glow
+    color: "oklch(0.65 0.22 27)",
+    glow: "oklch(0.7 0.25 25)",
   },
   {
     image: "/awards/best_sports.png",
     label: "Best Sports Team",
-    glow: "#00e676", // Green glow
+    color: "oklch(0.8 0.15 65)",
+    glow: "oklch(0.85 0.18 70)",
   },
   {
     image: "/awards/best_student.jpeg",
     label: "Best Student Activity Team",
-    glow: "#d500f9", // Magenta/Purple glow
+    color: "oklch(0.7 0.15 220)",
+    glow: "oklch(0.75 0.18 225)",
   },
   {
     image: "/awards/max_participation.jpeg",
     label: "Maximum Participation Team",
-    glow: "#ffea00", // Yellow glow
+    color: "oklch(0.82 0.18 95)",
+    glow: "oklch(0.88 0.2 95)",
   },
   {
     image: "/awards/active_dept.jpeg",
     label: "Most Active Department Team",
-    glow: "#1de9b6", // Teal glow
+    color: "oklch(0.68 0.18 160)",
+    glow: "oklch(0.75 0.2 165)",
   },
 ];
 
@@ -76,60 +86,63 @@ export function Showcase3D() {
           subtitle="Hover to feel the weight. Each award represents a season of brilliance."
         />
 
-        {/* Grid wrapper for perfect alignment */}
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 items-stretch auto-rows-fr">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
           {orbs.map((o, i) => (
-            <Tilt3D key={o.label} max={15} className="h-full">
-              {/* Award Card Container */}
-              <div 
-                className="group relative glass-strong rounded-3xl p-6 flex flex-col justify-between items-center text-center overflow-hidden h-full transition-all duration-500 hover:scale-[1.02]"
-                style={{
-                  boxShadow: `0 0 0 1px rgba(255,255,255,0.05), 0 10px 30px -10px ${o.glow}30`,
-                }}
-              >
-                {/* Glowing portal border (intensifies/pulsates on hover) */}
-                <div 
-                  className="absolute inset-0 rounded-3xl border-2 opacity-30 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-500 pointer-events-none"
-                  style={{
-                    borderColor: o.glow,
-                    boxShadow: `inset 0 0 20px ${o.glow}40, 0 0 20px ${o.glow}40`,
-                  }}
-                />
-
-                {/* Corner Sparkle Glow */}
+            <Tilt3D key={o.label} max={18}>
+              <div className="relative glass-strong rounded-3xl p-6 pb-7 text-center overflow-hidden h-full neon-border">
+                {/* Floating 3D orb */}
                 <div
-                  className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl opacity-20 group-hover:opacity-50 transition-opacity duration-500 pointer-events-none"
-                  style={{ background: o.glow }}
-                />
-                
-                {/* Image Container with 250px explicit height and object-fit contain */}
-                <div
-                  className="relative mx-auto mb-6 w-full flex items-center justify-center pointer-events-none"
+                  className="relative mx-auto mb-5 animate-float"
                   style={{
                     transform: "translateZ(60px)",
-                    animationDelay: `${i * 0.2}s`,
-                    height: "250px"
+                    animationDelay: `${i * 0.3}s`,
                   }}
                 >
-                  <img 
-                    src={o.image} 
-                    alt={o.label} 
-                    className="w-full h-full object-contain mix-blend-screen opacity-90 transition-transform duration-500 group-hover:scale-110" 
-                    style={{ filter: `drop-shadow(0 0 15px ${o.glow}60)` }}
-                  />
+                  <div className="relative w-32 h-32 mx-auto">
+                    {/* Orb shadow */}
+                    <div
+                      className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-24 h-4 rounded-full blur-xl opacity-70"
+                      style={{ background: o.glow }}
+                    />
+                    {/* Orb sphere */}
+                    <div
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        background: `radial-gradient(circle at 30% 25%, oklch(1 0 0 / 0.85), ${o.color} 35%, oklch(0.12 0.02 25) 90%)`,
+                        boxShadow: `0 0 60px ${o.glow}, inset -10px -20px 40px oklch(0 0 0 / 0.6), inset 10px 15px 30px oklch(1 0 0 / 0.15)`,
+                      }}
+                    />
+                    {/* Orbit ring */}
+                    <div className="absolute inset-[-8px] rounded-full border border-dashed animate-spin-slow"
+                      style={{ borderColor: `${o.glow}` }}
+                    />
+                    {/* Highlight */}
+                    <div
+                      className="absolute top-3 left-5 w-10 h-6 rounded-full opacity-80 blur-md"
+                      style={{ background: "oklch(1 0 0 / 0.7)" }}
+                    />
+                    {/* Image */}
+                    <div
+                      className="absolute inset-0 grid place-items-center p-3"
+                      style={{ transform: "translateZ(20px)" }}
+                    >
+                      <img src={o.image} alt={o.label} className="w-full h-full object-cover rounded-full mix-blend-screen opacity-90 drop-shadow-2xl" />
+                    </div>
+                  </div>
                 </div>
 
-                {/* Label */}
                 <div
-                  className="font-display text-lg font-bold mt-auto leading-tight transition-colors duration-300 w-full"
-                  style={{ 
-                    transform: "translateZ(30px)",
-                    color: "white",
-                    textShadow: `0 0 20px ${o.glow}80`
-                  }}
+                  className="font-display text-xl font-bold text-gradient-gold"
+                  style={{ transform: "translateZ(40px)" }}
                 >
                   {o.label}
                 </div>
+
+                {/* corner sparkle */}
+                <div
+                  className="absolute -top-10 -right-10 w-32 h-32 rounded-full blur-3xl opacity-50"
+                  style={{ background: o.glow }}
+                />
               </div>
             </Tilt3D>
           ))}
