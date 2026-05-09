@@ -32,75 +32,73 @@ export function Teams() {
                         background: `radial-gradient(circle at right top, ${t.glow}, transparent 70%)`,
                       }}
                     />
-                  <button
-                    onClick={() => setOpen(isOpen ? null : i)}
-                    className="relative w-full text-left p-6"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div
-                        className="shrink-0 w-20 h-20 rounded-full grid place-items-center shadow-lg [transform-style:preserve-3d] bg-white/5 border-2 overflow-hidden"
-                        style={{
-                          boxShadow: `0 0 32px ${t.glow}, inset 0 1px 0 rgba(255,255,255,0.2)`,
-                          transform: "translateZ(30px)",
-                          borderColor: t.accent,
-                        }}
-                      >
-                        <img src={t.logo} alt={`${t.name} crest`} className="w-full h-full object-contain p-3" />
+                    <button
+                      onClick={() => setOpen(isOpen ? null : i)}
+                      className="relative w-full text-left p-6"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div
+                          className="shrink-0 w-20 h-20 rounded-full flex items-center justify-center bg-black border-2 shadow-lg [transform-style:preserve-3d] overflow-hidden"
+                          style={{
+                            boxShadow: `0 0 32px ${t.glow}, inset 0 1px 0 rgba(255,255,255,0.2)`,
+                            transform: "translateZ(30px)",
+                            borderColor: t.accent,
+                          }}
+                        >
+                          <img src={t.logo} alt={`${t.name} crest`} className={`w-full h-full object-cover ${t.logoScale || "scale-125"}`} />
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-[10px] tracking-[0.3em] text-foreground/50">
+                            HOUSE OF {t.element.toUpperCase()}
+                          </div>
+                          <div className="font-display text-3xl font-bold text-gradient-gold mt-0.5">
+                            {t.name}
+                          </div>
+                          <div className="text-xs italic text-foreground/60 mt-1">
+                            {t.tagline}
+                          </div>
+                          <div className="mt-2 text-xs text-foreground/60">
+                            2025 Score:{" "}
+                            <span className="text-gold font-semibold">
+                              {t.points2025.toLocaleString()} pts
+                            </span>
+                          </div>
+                        </div>
+                        <ChevronDown
+                          className={`w-5 h-5 text-gold transition-transform ${isOpen ? "rotate-180" : ""
+                            }`}
+                        />
                       </div>
-                      <div className="flex-1">
-                        <div className="text-[10px] tracking-[0.3em] text-foreground/50">
-                          HOUSE OF {t.element.toUpperCase()}
-                        </div>
-                        <div className="font-display text-3xl font-bold text-gradient-gold mt-0.5">
-                          {t.name}
-                        </div>
-                        <div className="text-xs italic text-foreground/60 mt-1">
-                          {t.tagline}
-                        </div>
-                        <div className="mt-2 text-xs text-foreground/60">
-                          2025 Score:{" "}
-                          <span className="text-gold font-semibold">
-                            {t.points2025.toLocaleString()} pts
-                          </span>
-                        </div>
-                      </div>
-                      <ChevronDown
-                        className={`w-5 h-5 text-gold transition-transform ${
-                          isOpen ? "rotate-180" : ""
-                        }`}
-                      />
-                    </div>
-                  </button>
+                    </button>
 
-                  <div
-                    className={`relative grid transition-[grid-template-rows] duration-500 ${
-                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <div className="px-6 pb-6 space-y-3 text-sm">
-                        <p className="text-foreground/70 leading-relaxed">{t.about}</p>
-                        <Row
-                          icon={UserCog}
-                          label="Faculty Captain"
-                          name={t.faculty.name}
-                          phone={t.faculty.phone}
-                        />
-                        <Row
-                          icon={User}
-                          label="Student Captain"
-                          name={t.captain.name}
-                          phone={t.captain.phone}
-                        />
-                        <Row
-                          icon={UserCog}
-                          label="Student Vice Captain"
-                          name={t.vice.name}
-                          phone={t.vice.phone}
-                        />
+                    <div
+                      className={`relative grid transition-[grid-template-rows] duration-500 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                        }`}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="px-6 pb-6 space-y-3 text-sm">
+                          <p className="text-foreground/70 leading-relaxed">{t.about}</p>
+                          <Row
+                            icon={UserCog}
+                            label="Faculty Captain"
+                            name={t.faculty.name}
+                            phone={t.faculty.phone}
+                          />
+                          <Row
+                            icon={User}
+                            label="Student Captain"
+                            name={t.captain.name}
+                            phone={t.captain.phone}
+                          />
+                          <Row
+                            icon={UserCog}
+                            label="Student Vice Captain"
+                            name={t.vice.name}
+                            phone={t.vice.phone}
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
                   </div>
                 </Tilt3D>
               </div>
