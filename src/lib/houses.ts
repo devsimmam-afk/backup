@@ -5,8 +5,8 @@ export type House = {
   element: string;
   points2025: number;
   pointsChange?: number;
-  captain: { name: string; phone: string; year: string };
-  vice: { name: string; phone: string; year: string };
+  captain: { name: string; phone: string };
+  vice: { name: string; phone: string };
   faculty: { name: string; phone: string };
   about: string;
   accent: string;
@@ -25,8 +25,8 @@ export const houses: House[] = [
     element: "Fire",
     points2025: 45900,
     pointsChange: 1200,
-    captain: { name: "Shaik abdul Hussain", phone: "+91 98765 43219", year: "Final Year" },
-    vice: { name: "Charan Teja", phone: "+91 98765 43220", year: "Third Year" },
+    captain: { name: "Shaik Abdul Hussain", phone: "+91 99941 07450" },
+    vice: { name: "Charan Teja", phone: "+91 90309 18090" },
     faculty: { name: "Dr. P. Lakshmi", phone: "+91 98765 43221" },
     about: "Reigning champions of SIMMAM 2025. Born of fire. Agniyas ignite every stage with passion that refuses to fade.",
     accent: "#FF6B00",
@@ -43,8 +43,8 @@ export const houses: House[] = [
     element: "Wisdom",
     points2025: 23660,
     pointsChange: -300,
-    captain: { name: "G.sai charitha", phone: "+91 98765 43216", year: "Final Year" },
-    vice: { name: "Libhika", phone: "+91 98765 43217", year: "Third Year" },
+    captain: { name: "Libhika", phone: "+91 90923 02052" },
+    vice: { name: "G. Sai Charitha", phone: "+91 63054 03861" },
     faculty: { name: "Dr. K. Vasanthi", phone: "+91 98765 43218" },
     about: "Strategy in every step. Dhronas plan, execute, and conquer with calculated precision.",
     accent: "#B90000",
@@ -61,8 +61,8 @@ export const houses: House[] = [
     element: "Wind",
     points2025: 28420,
     pointsChange: 450,
-    captain: { name: "Harshitha G", phone: "+91 98765 43222", year: "Final Year" },
-    vice: { name: "Aravind khanna", phone: "+91 98765 43223", year: "Third Year" },
+    captain: { name: "Harshitha G", phone: "+91 90140 43741" },
+    vice: { name: "Aravind Khanna", phone: "+91 84386 98334" },
     faculty: { name: "Dr. A. Mohan", phone: "+91 98765 43224" },
     about: "Swift as the storm wind. Marutas move where others freeze, dance where others stand.",
     accent: "#FFD700",
@@ -79,8 +79,8 @@ export const houses: House[] = [
     element: "Storm",
     points2025: 45140,
     pointsChange: 800,
-    captain: { name: "Nithish Kumar P", phone: "+91 98765 43210", year: "Final Year" },
-    vice: { name: "Sivadharshan M", phone: "+91 98765 43211", year: "Third Year" },
+    captain: { name: "Nithish Kumar P", phone: "+91 82207 37003" },
+    vice: { name: "Sivadharshan M", phone: "+91 91599 51478" },
     faculty: { name: "Dr. R. Sundaram", phone: "+91 98765 43212" },
     about: "Rudras strike with thunder — masters of stage, sport, and spirit.",
     accent: "#E0E0E0",
@@ -97,8 +97,8 @@ export const houses: House[] = [
     element: "Sun",
     points2025: 31460,
     pointsChange: -150,
-    captain: { name: "Thanveer Aashif N", phone: "+91 98765 43213", year: "Final Year" },
-    vice: { name: "Manoj", phone: "+91 98765 43214", year: "Third Year" },
+    captain: { name: "Thanveer Aashif N", phone: "+91 93457 11740" },
+    vice: { name: "Manoj", phone: "+91 93908 94487" },
     faculty: { name: "Dr. S. Manikandan", phone: "+91 98765 43215" },
     about: "Radiant, relentless, regal. Suryas blaze through every event with golden brilliance.",
     accent: "#8A2BE2",
@@ -115,8 +115,8 @@ export const houses: House[] = [
     element: "Thunder",
     points2025: 22960,
     pointsChange: 600,
-    captain: { name: "Rahul perumal M", phone: "+91 98765 43225", year: "Final Year" },
-    vice: { name: "Theja Sri", phone: "+91 98765 43226", year: "Third Year" },
+    captain: { name: "Rahul Perumal M", phone: "+91 98412 01989" },
+    vice: { name: "Theja Sri", phone: "+91 94900 31377" },
     faculty: { name: "Dr. T. Bhaskar", phone: "+91 98765 43227" },
     about: "Unbreakable. Unstoppable. Vajras hit hard and rise harder — diamonds forged in lightning.",
     accent: "#50C878",

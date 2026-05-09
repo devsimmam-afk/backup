@@ -142,7 +142,6 @@ function CaptainsPage() {
                     <PersonCard
                       role="Students Captain"
                       name={formatName(h.captain.name)}
-                      year={h.captain.year}
                       phone={h.captain.phone}
                       accent={h.accent}
                       gradient={h.gradient}
@@ -150,7 +149,6 @@ function CaptainsPage() {
                     <PersonCard
                       role="Students Vice Captain"
                       name={formatName(h.vice.name)}
-                      year={h.vice.year}
                       phone={h.vice.phone}
                       accent={h.accent}
                       gradient={h.gradient}
@@ -199,14 +197,12 @@ function CaptainsPage() {
 function PersonCard({
   role,
   name,
-  year,
   phone,
   accent,
   gradient,
 }: {
   role: string;
   name: string;
-  year: string;
   phone: string;
   accent: string;
   gradient: string;
@@ -217,7 +213,6 @@ function PersonCard({
         <div className="min-w-0">
           <div className="text-[10px] tracking-[0.15em] text-gold/80 leading-tight mb-1">{role.toUpperCase()}</div>
           <div className="font-semibold truncate">{name}</div>
-          {year && <div className="text-xs text-foreground/55 mt-0.5">{year}</div>}
         </div>
       </div>
       {phone && (
