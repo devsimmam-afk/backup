@@ -131,10 +131,14 @@ function CaptainsPage() {
 
                   <div className="relative mb-4 glass rounded-xl px-4 py-3 flex items-center justify-between text-sm">
                     <div>
-                      <div className="text-[10px] tracking-[0.25em] text-foreground/50">
-                        FACULTY CAPTAIN
+                      <div className="text-[10px] tracking-[0.25em] text-foreground/50 mb-2">
+                        FACULTY CAPTAINS
                       </div>
-                      <div className="text-foreground/90">{formatName(h.faculty.name)}</div>
+                      <div className="text-foreground/90 flex flex-col gap-1">
+                        {h.faculty.map((f, i) => (
+                          <div key={i}>{formatName(f)}</div>
+                        ))}
+                      </div>
                     </div>
                   </div>
 

@@ -78,12 +78,23 @@ export function Teams() {
                       <div className="overflow-hidden">
                         <div className="px-6 pb-6 space-y-3 text-sm">
                           <p className="text-foreground/70 leading-relaxed">{t.about}</p>
-                          <Row
-                            icon={UserCog}
-                            label="Faculty Captain"
-                            name={t.faculty.name}
-                            phone={t.faculty.phone}
-                          />
+                          <div className="flex items-start justify-between gap-3 glass rounded-xl px-4 py-3">
+                            <div className="flex items-start gap-3 min-w-0">
+                              <div className="p-2 rounded-lg bg-gold/10 text-gold shrink-0">
+                                <UserCog className="w-4 h-4" />
+                              </div>
+                              <div className="min-w-0">
+                                <div className="text-[10px] tracking-[0.25em] text-foreground/50 mb-1">
+                                  FACULTY CAPTAINS
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                  {t.faculty.map((f, i) => (
+                                    <div key={i} className="truncate text-foreground/90">{f}</div>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                           <Row
                             icon={User}
                             label="Student Captain"

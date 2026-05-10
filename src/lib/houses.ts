@@ -7,7 +7,7 @@ export type House = {
   pointsChange?: number;
   captain: { name: string; phone: string };
   vice: { name: string; phone: string };
-  faculty: { name: string; phone: string };
+  faculty: string[];
   about: string;
   accent: string;
   glow: string;
@@ -27,7 +27,11 @@ export const houses: House[] = [
     pointsChange: 1200,
     captain: { name: "Shaik Abdul Hussain", phone: "+91 99941 07450" },
     vice: { name: "Charan Teja", phone: "+91 90309 18090" },
-    faculty: { name: "Dr. P. Lakshmi", phone: "+91 98765 43221" },
+    faculty: [
+      "Dr. S. LEONI SHARMILA",
+      "Dr. M. PRABHAHARAN",
+      "Dr. D. KAVITHA"
+    ],
     about: "Reigning champions of SIMMAM 2025. Born of fire. Agniyas ignite every stage with passion that refuses to fade.",
     accent: "#FF6B00",
     glow: "#FF6B00",
@@ -45,7 +49,11 @@ export const houses: House[] = [
     pointsChange: -300,
     captain: { name: "Libhika", phone: "+91 90923 02052" },
     vice: { name: "G. Sai Charitha", phone: "+91 63054 03861" },
-    faculty: { name: "Dr. K. Vasanthi", phone: "+91 98765 43218" },
+    faculty: [
+      "Dr. A. GAYATHRI",
+      "Dr. R. BALAMANIGANDAN",
+      "Dr. J. SAMUEL SIMRON RAJKUMAR"
+    ],
     about: "Strategy in every step. Dhronas plan, execute, and conquer with calculated precision.",
     accent: "#B90000",
     glow: "#B90000",
@@ -63,7 +71,11 @@ export const houses: House[] = [
     pointsChange: 450,
     captain: { name: "Harshitha G", phone: "+91 90140 43741" },
     vice: { name: "Aravind Khanna", phone: "+91 84386 98334" },
-    faculty: { name: "Dr. A. Mohan", phone: "+91 98765 43224" },
+    faculty: [
+      "Dr. V. SHEEJA KUMARI",
+      "Dr. S. VADIVEL",
+      "Mr. S. GOWRI SHANKAR"
+    ],
     about: "Swift as the storm wind. Marutas move where others freeze, dance where others stand.",
     accent: "#FFD700",
     glow: "#FFD700",
@@ -81,7 +93,11 @@ export const houses: House[] = [
     pointsChange: 800,
     captain: { name: "Nithish Kumar P", phone: "+91 82207 37003" },
     vice: { name: "Sivadharshan M", phone: "+91 91599 51478" },
-    faculty: { name: "Dr. R. Sundaram", phone: "+91 98765 43212" },
+    faculty: [
+      "Dr. T. P. ANITHAASHRI",
+      "Dr. M. ARUN",
+      "Dr. S. AROCKIA JAYADHAS"
+    ],
     about: "Rudras strike with thunder — masters of stage, sport, and spirit.",
     accent: "#E0E0E0",
     glow: "#E0E0E0",
@@ -99,7 +115,11 @@ export const houses: House[] = [
     pointsChange: -150,
     captain: { name: "Thanveer Aashif N", phone: "+91 93457 11740" },
     vice: { name: "Manoj", phone: "+91 93908 94487" },
-    faculty: { name: "Dr. S. Manikandan", phone: "+91 98765 43215" },
+    faculty: [
+      "Dr. R. JEENA",
+      "Dr. V.R.VIMAL",
+      "Dr. M. PRAKASH"
+    ],
     about: "Radiant, relentless, regal. Suryas blaze through every event with golden brilliance.",
     accent: "#8A2BE2",
     glow: "#8A2BE2",
@@ -117,7 +137,11 @@ export const houses: House[] = [
     pointsChange: 600,
     captain: { name: "Rahul Perumal M", phone: "+91 98412 01989" },
     vice: { name: "Theja Sri", phone: "+91 94900 31377" },
-    faculty: { name: "Dr. T. Bhaskar", phone: "+91 98765 43227" },
+    faculty: [
+      "Dr. S. MAHABOOB BASHA",
+      "Dr. M. NAGARAJ",
+      "Dr. K. THINAKARAN"
+    ],
     about: "Unbreakable. Unstoppable. Vajras hit hard and rise harder — diamonds forged in lightning.",
     accent: "#50C878",
     glow: "#50C878",
