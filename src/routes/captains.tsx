@@ -293,11 +293,11 @@ function CaptainsPage() {
             
             <div className="flex flex-wrap justify-center gap-4">
               {[
-                { name: "Sasvanthu G", role: "Team Lead", phone: "8610873714" },
-                { name: "Moniga V", role: "Technical Architect", phone: "6379192435" },
-                { name: "Roshini R", role: "Product Analyst", phone: "86105 99005" },
-                { name: "Suvedhan G", role: "Full-Stack Developer", phone: "90422 98646" },
-                { name: "Sudharsan R K", role: "Software Developer", phone: "63799 96328" }
+                { name: "Sasvanthu G", role: "Team Lead", phone: "+91 86108 73714" },
+                { name: "Moniga V", role: "Technical Architect", phone: "+91 63791 92435" },
+                { name: "Roshini R", role: "Product Analyst", phone: "+91 86105 99005" },
+                { name: "Suvedhan G", role: "Full-Stack Developer", phone: "+91 90422 98646" },
+                { name: "Sudharsan R K", role: "Software Developer", phone: "+91 63799 96328" }
               ].map((member) => (
                 <div key={member.name} className="w-full sm:w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.667rem)] lg:w-auto lg:flex-1 min-w-[200px] max-w-[280px]">
                   <div className="relative glass rounded-2xl p-5 flex flex-col items-center justify-center text-center h-full border border-white/5 hover:border-gold/30 transition-colors">
@@ -306,7 +306,7 @@ function CaptainsPage() {
                     {member.phone && (
                       <a
                         href={`tel:${member.phone.replace(/\s/g, "")}`}
-                        className="mt-3 inline-flex items-center gap-1.5 text-[10px] text-gold/60 hover:text-gold transition-colors"
+                        className="mt-3 inline-flex items-center gap-1.5 text-xs text-gold hover:text-gold/80"
                       >
                         <Phone className="w-3 h-3" /> {member.phone}
                       </a>
