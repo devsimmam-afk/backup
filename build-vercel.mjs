@@ -99,14 +99,49 @@ execSync("npm install --production --ignore-scripts", {
 writeFileSync(
   join(FN_DIR, "index.mjs"),
   `import server from "./dist/server/server.js";
+import { Readable } from "node:stream";
 
-export default async function handler(request, context) {
+export default async function handler(req, res) {
   try {
+    const protocol = req.headers['x-forwarded-proto'] || 'https';
+    const host = req.headers['x-forwarded-host'] || req.headers.host || 'localhost';
+    const url = new URL(req.url, \`\${protocol}://\${host}\`);
+
+    const init = {
+      method: req.method,
+      headers: req.headers,
+    };
+
+    if (req.method !== 'GET' && req.method !== 'HEAD') {
+      init.body = req;
+      init.duplex = 'half';
+    }
+
+    const request = new Request(url, init);
     const response = await server.fetch(request);
-    return response;
+
+    res.statusCode = response.status;
+    
+    // Set headers properly, addressing Set-Cookie separately
+    response.headers.forEach((value, key) => {
+      if (key === 'set-cookie' && typeof response.headers.getSetCookie === 'function') {
+        res.setHeader(key, response.headers.getSetCookie());
+      } else {
+        res.setHeader(key, value);
+      }
+    });
+
+    if (response.body) {
+      Readable.fromWeb(response.body).pipe(res);
+    } else {
+      res.end();
+    }
   } catch (error) {
     console.error("SSR Error:", error);
-    return new Response("Internal Server Error", { status: 500 });
+    if (!res.headersSent) {
+      res.statusCode = 500;
+      res.end("Internal Server Error");
+    }
   }
 }
 `
