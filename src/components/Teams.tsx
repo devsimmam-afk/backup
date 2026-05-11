@@ -73,15 +73,15 @@ export function Teams() {
                   )}
                 </div>
 
-                <div className="relative flex items-center gap-4 mb-6">
+                <div className="relative flex items-center gap-6 mb-8">
                   <div
-                    className="shrink-0 w-16 h-16 rounded-full flex items-center justify-center bg-black border-2 overflow-hidden"
-                    style={{
+                    className={`shrink-0 w-28 h-28 flex items-center justify-center transition-all ${h.isOriginalShape ? "" : "rounded-full bg-black/20 border-2"}`}
+                    style={h.isOriginalShape ? {} : {
                       borderColor: h.accent,
-                      boxShadow: `0 0 32px ${h.glow}`,
+                      boxShadow: `0 0 32px ${h.glow}44`,
                     }}
                   >
-                    <img src={h.logo} alt={`${h.name} crest`} className={`w-full h-full object-cover ${h.logoScale || "scale-125"}`} />
+                    <img src={h.logo} alt={`${h.name} crest`} className={`w-full h-full object-contain ${h.isOriginalShape ? "drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" : "p-1"} ${h.logoScale || "scale-125"}`} />
                   </div>
                   <div>
                     <div className="text-[10px] tracking-[0.3em] text-foreground/50">

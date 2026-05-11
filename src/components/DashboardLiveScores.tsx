@@ -47,6 +47,7 @@ type HouseScore = {
   breakdown: { winners: number; runners: number; participation: number };
   logo: string;
   logoScale?: string;
+  isOriginalShape?: boolean;
 };
 
 export function DashboardLiveScores() {
@@ -65,6 +66,7 @@ export function DashboardLiveScores() {
         breakdown: { winners: 0, runners: 0, participation: 0 },
         logo: h.logo,
         logoScale: h.logoScale,
+        isOriginalShape: h.isOriginalShape,
       }))
       .sort((a, b) => a.name.localeCompare(b.name))
   );
@@ -168,12 +170,12 @@ export function DashboardLiveScores() {
                       </span>
                       
                       <div
-                        className="w-10 h-10 rounded-full flex items-center justify-center bg-black border-2 overflow-hidden shrink-0"
-                        style={{
+                        className={`w-12 h-12 flex items-center justify-center shrink-0 transition-all ${house.isOriginalShape ? "" : "bg-black/40 border-2 rounded-full overflow-hidden"}`}
+                        style={house.isOriginalShape ? {} : {
                           borderColor: house.accent,
                         }}
                       >
-                        <img src={house.logo} alt={`${house.name} crest`} className={`w-full h-full object-cover ${house.logoScale || "scale-125"}`} />
+                        <img src={house.logo} alt={`${house.name} crest`} className={`w-full h-full object-contain ${house.isOriginalShape ? "drop-shadow-[0_0_12px_rgba(255,255,255,0.2)]" : ""} ${house.logoScale || "scale-125"}`} />
                       </div>
 
                       <div className="flex flex-col">

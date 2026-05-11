@@ -226,24 +226,24 @@ function CaptainsPage() {
                     )}
                   </div>
 
-                  <div className="relative flex flex-col mb-8 pt-2">
+                  <div className="relative flex items-center gap-6 mb-10">
                     <div
-                      className="absolute -top-2 -left-2 w-20 h-20 rounded-2xl flex items-center justify-center bg-black/40 backdrop-blur-md border border-white/10 overflow-hidden z-10 transition-transform duration-500 group-hover:scale-110"
-                      style={{
+                      className={`shrink-0 w-28 h-28 md:w-32 md:h-32 flex items-center justify-center z-10 transition-transform duration-500 group-hover:scale-110 ${h.isOriginalShape ? "" : "bg-black/40 backdrop-blur-md border border-white/10 overflow-hidden rounded-2xl"}`}
+                      style={h.isOriginalShape ? {} : {
                         boxShadow: `0 0 20px ${h.accent}33`,
                       }}
                     >
-                      <img src={h.logo} alt={`${h.name} crest`} className={`w-full h-full object-cover p-2 ${h.logoScale || "scale-125"}`} />
+                      <img src={h.logo} alt={`${h.name} crest`} className={`w-full h-full object-contain ${h.isOriginalShape ? "drop-shadow-[0_0_20px_rgba(212,175,55,0.4)]" : "p-2"} ${h.logoScale || "scale-125"}`} />
                     </div>
                     
-                    <div className="pl-24">
-                      <div className="text-[10px] tracking-[0.3em] text-foreground/50 mb-1">
-                        HOUSE OF {h.element.toUpperCase()}
+                    <div>
+                      <div className="text-[10px] tracking-[0.3em] text-foreground/50 mb-1 uppercase">
+                        House of {h.element}
                       </div>
                       <div className="font-display text-4xl md:text-5xl font-bold text-gradient-gold mb-2">
                         {h.name}
                       </div>
-                      <div className="text-xs italic text-foreground/60">{h.tagline}</div>
+                      <div className="text-xs italic text-foreground/60 leading-tight">{h.tagline}</div>
                     </div>
                   </div>
 
