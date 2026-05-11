@@ -6,14 +6,14 @@ const orbs = [
   {
     image: "/awards/overall_winner.png",
     label: "Overall Winner",
-    color: "oklch(0.85 0.17 85)",
-    glow: "oklch(0.88 0.18 88)",
+    color: "#a855f7",
+    glow: "#a855f7",
   },
   {
     image: "/awards/overall_runner.png",
     label: "Overall Runner",
-    color: "oklch(0.85 0.02 90)",
-    glow: "oklch(0.92 0.02 90)",
+    color: "#1e3a8a",
+    glow: "#1e3a8a",
   },
   {
     image: "/awards/best_tech.png",
@@ -24,44 +24,44 @@ const orbs = [
   {
     image: "/awards/best_nontech.png",
     label: "Best Non-Tech Team",
-    color: "oklch(0.75 0.2 30)",
-    glow: "oklch(0.8 0.22 35)",
+    color: "#e11d48",
+    glow: "#e11d48",
   },
   {
     image: "/awards/cultural.png",
     label: "Best Cultural Team",
-    color: "oklch(0.62 0.14 50)",
-    glow: "oklch(0.72 0.18 55)",
+    color: "#dc2626",
+    glow: "#f97316",
   },
   {
     image: "/awards/enthusiastic_team.png",
     label: "Best Enthusiastic Team",
-    color: "oklch(0.65 0.22 27)",
-    glow: "oklch(0.7 0.25 25)",
+    color: "#a855f7",
+    glow: "#a855f7",
   },
   {
     image: "/awards/best_sports.png",
     label: "Best Sports Team",
-    color: "oklch(0.8 0.15 65)",
-    glow: "oklch(0.85 0.18 70)",
+    color: "#2563eb",
+    glow: "#2563eb",
   },
   {
-    image: "/awards/best_student.jpeg",
+    image: "/awards/best_student.png",
     label: "Best Student Activity Team",
-    color: "oklch(0.7 0.15 220)",
-    glow: "oklch(0.75 0.18 225)",
+    color: "#7c3aed",
+    glow: "#7c3aed",
   },
   {
-    image: "/awards/max_participation.jpeg",
+    image: "/awards/max_participation.png",
     label: "Maximum Participation Team",
-    color: "oklch(0.82 0.18 95)",
-    glow: "oklch(0.88 0.2 95)",
+    color: "#c084fc",
+    glow: "#c084fc",
   },
   {
-    image: "/awards/active_dept.jpeg",
+    image: "/awards/active_dept.png",
     label: "Most Active Department Team",
-    color: "oklch(0.68 0.18 160)",
-    glow: "oklch(0.75 0.2 165)",
+    color: "#bef264",
+    glow: "#bef264",
   },
 ];
 
@@ -89,7 +89,10 @@ export function Showcase3D() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
           {orbs.map((o, i) => (
             <Tilt3D key={o.label} max={18}>
-              <div className="relative glass-strong rounded-3xl p-6 pb-7 text-center overflow-hidden h-full neon-border">
+              <div 
+                className="relative glass-strong rounded-3xl p-6 pb-7 text-center overflow-hidden h-full border transition-all duration-500"
+                style={{ borderColor: `${o.glow}44`, boxShadow: `0 0 30px ${o.glow}15` }}
+              >
                 {/* Floating 3D orb */}
                 <div
                   className="relative mx-auto mb-5 animate-float"
@@ -114,7 +117,7 @@ export function Showcase3D() {
                     />
                     {/* Orbit ring */}
                     <div className="absolute inset-[-8px] rounded-full border border-dashed animate-spin-slow"
-                      style={{ borderColor: `${o.glow}` }}
+                      style={{ borderColor: `${o.glow}88` }}
                     />
                     {/* Highlight */}
                     <div
