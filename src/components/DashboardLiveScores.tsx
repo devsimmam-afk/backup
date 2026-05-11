@@ -157,85 +157,133 @@ export function DashboardLiveScores() {
             </div>
 
             <div className="relative space-y-4">
-              {houseScores.map((house, i) => (
-                <div 
-                  key={house.name} 
-                  className={`relative p-2 -mx-2 rounded-xl transition-colors cursor-pointer ${selectedHouse === house.name ? 'bg-white/10' : 'hover:bg-white/5'}`}
-                  onClick={() => setSelectedHouse(house.name)}
-                >
-                  <div className="flex items-center justify-between mb-1.5">
-                    <div className="flex items-center gap-3">
-                      <span className="font-display text-lg text-gold w-6">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
+              {houseScores.map((house, i) => {
+                const ElementIcon = houseElementIcons[house.element];
+                return (
+                  <div 
+                    key={house.name} 
+                    className={`relative p-2 -mx-2 rounded-xl transition-colors cursor-pointer ${selectedHouse === house.name ? 'bg-white/10' : 'hover:bg-white/5'}`}
+                    onClick={() => setSelectedHouse(house.name)}
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-4">
+                        <span className="font-display text-2xl font-black text-white/20 w-8 tabular-nums italic">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        
+                        <div
+                          className={`w-14 h-14 flex items-center justify-center shrink-0 transition-all ${house.isOriginalShape ? "" : "bg-black/40 border-2 rounded-full overflow-hidden"}`}
+                        >
+                          <img src={house.logo} alt={`${house.name} crest`} className={`w-full h-full object-contain ${house.isOriginalShape ? "drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" : ""} ${house.logoScale || "scale-125"}`} />
+                        </div>
+
+                        <div className="flex flex-col">
+                          <div className="flex items-center gap-2">
+                            <span className="font-bold text-lg tracking-tight text-foreground/90 uppercase">{house.name}</span>
+                            {i === 0 && <Crown className="w-4 h-4 text-gold animate-bounce" />}
+                          </div>
+                          <div className="flex items-center gap-1.5 text-[10px] tracking-[0.2em] text-foreground/40 uppercase">
+                            {ElementIcon && <ElementIcon className="w-3 h-3" />}
+                            {house.element}
+                          </div>
+                        </div>
+                      </div>
                       
-                      <div
-                        className={`w-12 h-12 flex items-center justify-center shrink-0 transition-all ${house.isOriginalShape ? "" : "bg-black/40 border-2 rounded-full overflow-hidden"}`}
-                        style={house.isOriginalShape ? {} : {
-                          borderColor: house.accent,
-                        }}
-                      >
-                        <img src={house.logo} alt={`${house.name} crest`} className={`w-full h-full object-contain ${house.isOriginalShape ? "drop-shadow-[0_0_12px_rgba(255,255,255,0.2)]" : ""} ${house.logoScale || "scale-125"}`} />
+                      <div className="flex flex-col items-end">
+                        <span className="font-display text-3xl font-bold tabular-nums text-gradient-gold leading-none">
+                          {house.points}
+                        </span>
+                        <span className="text-[10px] tracking-[0.2em] text-foreground/30 font-bold uppercase mt-1">Total Score</span>
+                      </div>
+                    </div>
+
+                    {/* Enhanced Stacked Progress Bar */}
+                    <div className="relative group/bar">
+                      <div className="h-4 rounded-full bg-white/5 border border-white/10 overflow-hidden backdrop-blur-sm relative">
+                        {/* Participation Segment */}
+                        <div
+                          className="absolute inset-y-0 left-0 transition-all duration-1000 ease-out opacity-40"
+                          style={{
+                            width: `${max > 0 ? (house.points / max) * 100 : 0}%`,
+                            background: house.gradient,
+                          }}
+                        />
+                        
+                        {/* runners Segment */}
+                        <div
+                          className="absolute inset-y-0 left-0 transition-all duration-1000 ease-out opacity-70"
+                          style={{
+                            width: `${max > 0 ? ((house.breakdown.winners + house.breakdown.runners) / max) * 100 : 0}%`,
+                            background: house.gradient,
+                            boxShadow: `0 0 20px ${house.color}44`,
+                          }}
+                        />
+
+                        {/* Winners Segment (The core) */}
+                        <div
+                          className="absolute inset-y-0 left-0 transition-all duration-1000 ease-out shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+                          style={{
+                            width: `${max > 0 ? (house.breakdown.winners / max) * 100 : 0}%`,
+                            background: house.gradient,
+                            boxShadow: `inset 0 1px 1px rgba(255,255,255,0.2), 0 0 25px ${house.color}66`,
+                          }}
+                        >
+                          <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,oklch(1_0_0/0.3),transparent)] bg-[length:200%_100%] animate-[shimmer_2s_linear_infinite]" />
+                        </div>
                       </div>
 
-                      <div className="flex flex-col">
-                        <span className="font-semibold text-foreground">{house.name}</span>
-                        <span className="text-xs text-foreground/50">{house.element}</span>
+                      {/* Progress markers/hints */}
+                      <div className="flex justify-between mt-2 px-1 opacity-0 group-hover/bar:opacity-100 transition-opacity duration-300">
+                        <div className="flex gap-3">
+                           <span className="text-[9px] text-foreground/40 uppercase tracking-tighter">Winners: <span className="text-gold font-bold">{house.breakdown.winners}</span></span>
+                           <span className="text-[9px] text-foreground/40 uppercase tracking-tighter">Runners: <span className="text-white/60 font-bold">{house.breakdown.runners}</span></span>
+                           <span className="text-[9px] text-foreground/40 uppercase tracking-tighter">Part.: <span className="text-foreground/30 font-bold">{house.breakdown.participation}</span></span>
+                        </div>
                       </div>
                     </div>
-                    <span className="font-display text-xl tabular-nums text-gradient-gold">
-                      {house.points}
-                    </span>
-                  </div>
-                  <div className="h-3 rounded-full bg-white/5 overflow-hidden">
-                    <div
-                      className="h-full rounded-full transition-all duration-700 relative texture-overlay"
-                      style={{
-                        width: `${max > 0 ? (house.points / max) * 100 : 0}%`,
-                        background: house.gradient,
-                        boxShadow: `0 0 14px ${house.color}`,
-                      }}
-                    >
-                      <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,oklch(1_0_0/0.25),transparent)] bg-[length:200%_100%] animate-[shimmer_2s_linear_infinite]" />
-                    </div>
-                  </div>
 
-                  {/* Inline Breakdown */}
-                  {selectedHouse === house.name && (
-                    <div className="mt-4 p-4 rounded-2xl bg-black/40 border border-white/5 animate-rise-in">
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div>
-                          <div className="flex justify-between text-xs mb-1.5">
-                             <span className="text-foreground/70 uppercase tracking-wider">Winners</span>
-                             <span className="font-bold text-gold">{house.breakdown.winners}</span>
-                          </div>
-                          <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
-                             <div className="h-full rounded-full transition-all duration-700 texture-overlay" style={{ width: `${house.points > 0 ? (house.breakdown.winners / house.points) * 100 : 0}%`, background: house.gradient }} />
-                          </div>
+                    {/* Floating Action Hint */}
+                    {selectedHouse !== house.name && (
+                      <div className="absolute top-1/2 right-12 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2 text-[8px] tracking-[0.2em] text-gold/60 uppercase">
+                        Click for breakdown <Sparkles className="w-3 h-3" />
+                      </div>
+                    )}
+
+                    {/* Enhanced Inline Breakdown */}
+                    {selectedHouse === house.name && (
+                      <div className="mt-6 p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-xl animate-rise-in overflow-hidden relative">
+                        <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+                           {ElementIcon && <ElementIcon className="w-24 h-24" style={{ color: house.color }} />}
                         </div>
-                        <div>
-                          <div className="flex justify-between text-xs mb-1.5">
-                             <span className="text-foreground/70 uppercase tracking-wider">Runners</span>
-                             <span className="font-bold text-gold">{house.breakdown.runners}</span>
-                          </div>
-                          <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
-                             <div className="h-full rounded-full transition-all duration-700 opacity-70 texture-overlay" style={{ width: `${house.points > 0 ? (house.breakdown.runners / house.points) * 100 : 0}%`, background: house.gradient }} />
-                          </div>
-                        </div>
-                        <div>
-                          <div className="flex justify-between text-xs mb-1.5">
-                             <span className="text-foreground/70 uppercase tracking-wider">Participation</span>
-                             <span className="font-bold text-gold">{house.breakdown.participation}</span>
-                          </div>
-                          <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
-                             <div className="h-full rounded-full transition-all duration-700 opacity-40 texture-overlay" style={{ width: `${house.points > 0 ? (house.breakdown.participation / house.points) * 100 : 0}%`, background: house.gradient }} />
-                          </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                          {[
+                            { label: "Winners", value: house.breakdown.winners, icon: Trophy, color: "var(--gold)" },
+                            { label: "Runners", value: house.breakdown.runners, icon: Award, color: house.color },
+                            { label: "Participation", value: house.breakdown.participation, icon: Users, color: "oklch(0.5 0 0)" }
+                          ].map((stat) => (
+                            <div key={stat.label} className="flex flex-col gap-2">
+                               <div className="flex items-center gap-2">
+                                 <div className="p-1.5 rounded-lg bg-white/5 border border-white/10">
+                                   <stat.icon className="w-3.5 h-3.5" style={{ color: stat.color }} />
+                                 </div>
+                                 <span className="text-xs font-bold tracking-widest text-foreground/60 uppercase">{stat.label}</span>
+                               </div>
+                               <div className="flex items-end gap-2">
+                                 <span className="font-display text-2xl font-bold text-white">{stat.value}</span>
+                                 <span className="text-[10px] text-foreground/30 mb-1 font-medium">PTS CONTRIBUTION</span>
+                               </div>
+                               <div className="h-1 rounded-full bg-white/5 overflow-hidden">
+                                 <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${house.points > 0 ? (stat.value / house.points) * 100 : 0}%`, background: stat.color }} />
+                               </div>
+                            </div>
+                          ))}
                         </div>
                       </div>
-                    </div>
-                  )}
-                </div>
-              ))}
+                    )}
+                  </div>
+                );
+              })}
             </div>
 
         </div>
