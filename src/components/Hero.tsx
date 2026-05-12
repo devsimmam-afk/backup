@@ -79,7 +79,7 @@ export function Hero() {
           </div>
 
           <a
-            href="https://chat.whatsapp.com/HQ5y2OLDWj8GmsBIHsxt4s"
+            href="https://chat.whatsapp.com/KY7xY4sCEdoBFmXiplBI4M"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#25D366] hover:scale-110 transition-transform duration-300 drop-shadow-md hover:drop-shadow-lg"
