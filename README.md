@@ -2,7 +2,7 @@
 
 Welcome to the official repository of **SIMMAM 2026**, a premium web experience for the grand inter-house cultural and sports festival.
 
-[SIMMAM}(https://github.com/ssesimmam/Simmam-Web/blob/264882c11dad4e96ad54458de1ac860e5f7c1b62/src/assets/simmam-lion.png)
+[SIMMAM](https://github.com/ssesimmam/Simmam-Web/blob/264882c11dad4e96ad54458de1ac860e5f7c1b62/src/assets/simmam-lion.png)
 
 ---
 
