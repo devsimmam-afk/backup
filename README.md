@@ -1,10 +1,15 @@
 # 🦁 SIMMAM 2026 — The Legacy Continues
 
 Welcome to the official repository of **SIMMAM 2026**, a premium web experience for the grand inter-house cultural and sports festival.
+<div align="center">
 
-[SIMMAM](https://github.com/ssesimmam/Simmam-Web/blob/264882c11dad4e96ad54458de1ac860e5f7c1b62/src/assets/simmam-lion.png)
+<img src="https://raw.githubusercontent.com/ssesimmam/Simmam-Web/264882c11dad4e96ad54458de1ac860e5f7c1b62/src/assets/simmam-lion.png" alt="SIMMAM Logo" width="220"/>
 
----
+# SIMMAM
+
+### The Grand Inter-House Cultural and Sports Festival
+
+</div>
 
 ## 🚀 Tech Stack
 
@@ -74,10 +79,6 @@ The digital manifestation of SIMMAM 2026 is brought to life by this dedicated te
 | **Roshini R** | 📊 Product Analyst | [+91 86105 99005](tel:+918610599005) |
 | **Suvedhan G** | 💻 Full-Stack Developer | [+91 90422 98646](tel:+919042298646) |
 | **Sudharsan R K** | 🛠 Software Developer | [+91 63799 96328](tel:+916379996328) |
-
-### Support Team
-- **Deepa preya H**
-- **Swetha C**
 
 ---
 
