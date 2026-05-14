@@ -53,22 +53,39 @@ type HouseScore = {
 export function DashboardLiveScores() {
   const [selectedHouse, setSelectedHouse] = useState<string | null>(null);
 
+  const participationScores: Record<string, number> = {
+    "Agniyas": 300,
+    "Marutas": 560,
+    "Rudras": 420,
+    "Dhronas": 400,
+    "Suryas": 280,
+    "Vajras": 240,
+  };
+
   const [houseScores, setHouseScores] = useState<HouseScore[]>(() => 
     houses
-      .map((h) => ({
-        name: h.name,
-        short: h.short,
-        element: h.element,
-        points: 0,
-        color: h.accent,
-        accent: h.accent,
-        gradient: h.gradient,
-        breakdown: { winners: 0, runners: 0, participation: 0 },
-        logo: h.logo,
-        logoScale: h.logoScale,
-        isOriginalShape: h.isOriginalShape,
-      }))
-      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((h) => {
+        const participation = participationScores[h.name] || 0;
+        const totalPoints = participation + (h.breakdown?.winners || 0) + (h.breakdown?.runners || 0);
+        return {
+          name: h.name,
+          short: h.short,
+          element: h.element,
+          points: totalPoints,
+          color: h.accent,
+          accent: h.accent,
+          gradient: h.gradient,
+          breakdown: { 
+            winners: h.breakdown?.winners || 0, 
+            runners: h.breakdown?.runners || 0, 
+            participation: participation 
+          },
+          logo: h.logo,
+          logoScale: h.logoScale,
+          isOriginalShape: h.isOriginalShape,
+        };
+      })
+      .sort((a, b) => b.points - a.points)
   );
 
   const max = Math.max(...houseScores.map((s) => s.points));
