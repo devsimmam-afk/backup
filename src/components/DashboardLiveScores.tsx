@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Award, Building2, Crown, Flame, Trophy, Users, Activity, TrendingUp, Sparkles, CloudLightning, Sun, BookOpen, Wind, Zap, Home } from "lucide-react";
+import { Crown, Activity, TrendingUp } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Counter } from "./Counter";
 import { Tilt3D } from "./Tilt3D";
@@ -17,24 +17,9 @@ type Stat = {
 
 import { allEvents } from "@/lib/eventsData";
 
-const stats: Stat[] = [
-  { label: "Total Teams", value: 6, hint: "Agniyas, Dhronas, Marutas, Rudras, Suryas, Vajras", accent: "gold", href: "/#teams" },
-  { label: "Total Participants", value: 0, hint: "Across all events", accent: "red" },
-  { label: "Total Events", value: 150, hint: "", accent: "gold", href: "/events" },
-  { label: "Festival Days", value: 3, hint: "Three days. One legend.", accent: "red" },
-  { label: "2025 Champion", value: 1, suffix: " — Agniyas", hint: "Last year's overall winners", accent: "gold", href: "/#leaderboard" },
-  { label: "Highest Score", value: 45900, hint: "Agniyas — SIMMAM 2025", accent: "red", href: "/#leaderboard" },
-];
 
-// House element icons
-const houseElementIcons: { [key: string]: React.ElementType } = {
-  "Storm": CloudLightning,
-  "Sun": Sun,
-  "Wisdom": BookOpen,
-  "Fire": Flame,
-  "Wind": Wind,
-  "Thunder": Zap,
-};
+
+
 
 type HouseScore = {
   name: string;
@@ -51,15 +36,15 @@ type HouseScore = {
 };
 
 export function DashboardLiveScores() {
-  const [selectedHouse, setSelectedHouse] = useState<string | null>(null);
+
 
   const participationScores: Record<string, number> = {
-    "Agniyas": 300,
-    "Marutas": 560,
-    "Rudras": 420,
-    "Dhronas": 400,
-    "Suryas": 280,
-    "Vajras": 240,
+    "Agniyas": 400,
+    "Marutas": 1160,
+    "Rudras": 520,
+    "Dhronas": 600,
+    "Suryas": 680,
+    "Vajras": 340,
   };
 
   const [houseScores, setHouseScores] = useState<HouseScore[]>(() => 
@@ -89,7 +74,16 @@ export function DashboardLiveScores() {
   );
 
   const max = Math.max(...houseScores.map((s) => s.points));
-  const selectedHouseData = houseScores.find((h) => h.name === selectedHouse);
+  const leader = houseScores[0];
+
+  const dynamicStats: Stat[] = [
+    { label: "Total Teams", value: 6, hint: "Agniyas, Dhronas, Marutas, Rudras, Suryas, Vajras", accent: "gold", href: "/#teams" },
+    { label: "Total Participants", value: 1840, hint: "Across all events", accent: "red" },
+    { label: "Total Events", value: 150, hint: "", accent: "gold", href: "/events" },
+    { label: "Festival Days", value: 3, hint: "Three days. One legend.", accent: "red" },
+    { label: "1st Place Holder", value: 1, suffix: leader ? ` — ${leader.name}` : " — ...", hint: "Leading the rankings", accent: "gold", href: "/#leaderboard" },
+    { label: "Highest Score", value: leader?.points || 0, suffix: leader ? ` — ${leader.name}` : " — ...", hint: leader ? `${leader.name} — Current Best` : "...", accent: "red", href: "/#leaderboard" },
+  ];
 
   return (
     <section id="dashboard" className="relative py-24 md:py-32">
@@ -102,7 +96,7 @@ export function DashboardLiveScores() {
 
         {/* Stats Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mb-16">
-          {stats.map((s, i) => {
+          {dynamicStats.map((s, i) => {
             const Wrapper = s.href ? "a" : "div";
             return (
               <Tilt3D key={s.label} max={9}>
@@ -175,12 +169,11 @@ export function DashboardLiveScores() {
 
             <div className="relative space-y-4">
               {houseScores.map((house, i) => {
-                const ElementIcon = houseElementIcons[house.element];
+
                 return (
                   <div 
                     key={house.name} 
-                    className={`relative p-2 -mx-2 rounded-xl transition-colors cursor-pointer ${selectedHouse === house.name ? 'bg-white/10' : 'hover:bg-white/5'}`}
-                    onClick={() => setSelectedHouse(house.name)}
+                    className="relative p-2 -mx-2 rounded-xl transition-colors hover:bg-white/5"
                   >
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-4">
@@ -210,33 +203,13 @@ export function DashboardLiveScores() {
                       </div>
                     </div>
 
-                    {/* Enhanced Stacked Progress Bar */}
+                    {/* Total Points Progress Bar */}
                     <div className="relative group/bar">
                       <div className="h-4 rounded-full bg-white/5 border border-white/10 overflow-hidden backdrop-blur-sm relative">
-                        {/* Participation Segment */}
-                        <div
-                          className="absolute inset-y-0 left-0 transition-all duration-1000 ease-out opacity-40"
-                          style={{
-                            width: `${max > 0 ? (house.points / max) * 100 : 0}%`,
-                            background: house.gradient,
-                          }}
-                        />
-                        
-                        {/* runners Segment */}
-                        <div
-                          className="absolute inset-y-0 left-0 transition-all duration-1000 ease-out opacity-70"
-                          style={{
-                            width: `${max > 0 ? ((house.breakdown.winners + house.breakdown.runners) / max) * 100 : 0}%`,
-                            background: house.gradient,
-                            boxShadow: `0 0 20px ${house.color}44`,
-                          }}
-                        />
-
-                        {/* Winners Segment (The core) */}
                         <div
                           className="absolute inset-y-0 left-0 transition-all duration-1000 ease-out shadow-[0_0_15px_rgba(255,255,255,0.2)]"
                           style={{
-                            width: `${max > 0 ? (house.breakdown.winners / max) * 100 : 0}%`,
+                            width: `${max > 0 ? (house.points / max) * 100 : 0}%`,
                             background: house.gradient,
                             boxShadow: `inset 0 1px 1px rgba(255,255,255,0.2), 0 0 25px ${house.color}66`,
                           }}
@@ -244,56 +217,9 @@ export function DashboardLiveScores() {
                           <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,oklch(1_0_0/0.3),transparent)] bg-[length:200%_100%] animate-[shimmer_2s_linear_infinite]" />
                         </div>
                       </div>
-
-                      {/* Progress markers/hints */}
-                      <div className="flex justify-between mt-2 px-1 opacity-0 group-hover/bar:opacity-100 transition-opacity duration-300">
-                        <div className="flex gap-3">
-                           <span className="text-[9px] text-foreground/40 uppercase tracking-tighter">Winners: <span className="text-gold font-bold">{house.breakdown.winners}</span></span>
-                           <span className="text-[9px] text-foreground/40 uppercase tracking-tighter">Runners: <span className="text-white/60 font-bold">{house.breakdown.runners}</span></span>
-                           <span className="text-[9px] text-foreground/40 uppercase tracking-tighter">Part.: <span className="text-foreground/30 font-bold">{house.breakdown.participation}</span></span>
-                        </div>
-                      </div>
                     </div>
 
-                    {/* Floating Action Hint */}
-                    {selectedHouse !== house.name && (
-                      <div className="absolute top-1/2 right-12 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2 text-[8px] tracking-[0.2em] text-gold/60 uppercase">
-                        Click for breakdown <Sparkles className="w-3 h-3" />
-                      </div>
-                    )}
 
-                    {/* Enhanced Inline Breakdown */}
-                    {selectedHouse === house.name && (
-                      <div className="mt-6 p-6 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-xl animate-rise-in overflow-hidden relative">
-                        <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
-                           {ElementIcon && <ElementIcon className="w-24 h-24" style={{ color: house.color }} />}
-                        </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
-                          {[
-                            { label: "Winners", value: house.breakdown.winners, icon: Trophy, color: "var(--gold)" },
-                            { label: "Runners", value: house.breakdown.runners, icon: Award, color: house.color },
-                            { label: "Participation", value: house.breakdown.participation, icon: Users, color: "oklch(0.5 0 0)" }
-                          ].map((stat) => (
-                            <div key={stat.label} className="flex flex-col gap-2">
-                               <div className="flex items-center gap-2">
-                                 <div className="p-1.5 rounded-lg bg-white/5 border border-white/10">
-                                   <stat.icon className="w-3.5 h-3.5" style={{ color: stat.color }} />
-                                 </div>
-                                 <span className="text-xs font-bold tracking-widest text-foreground/60 uppercase">{stat.label}</span>
-                               </div>
-                               <div className="flex items-end gap-2">
-                                 <span className="font-display text-2xl font-bold text-white">{stat.value}</span>
-                                 <span className="text-[10px] text-foreground/30 mb-1 font-medium">PTS CONTRIBUTION</span>
-                               </div>
-                               <div className="h-1 rounded-full bg-white/5 overflow-hidden">
-                                 <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${house.points > 0 ? (stat.value / house.points) * 100 : 0}%`, background: stat.color }} />
-                               </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
                   </div>
                 );
               })}
