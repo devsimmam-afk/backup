@@ -39,12 +39,12 @@ export function DashboardLiveScores() {
 
 
   const participationScores: Record<string, number> = {
-    "Agniyas": 0,
-    "Marutas": 0,
-    "Rudras": 0,
-    "Dhronas": 0,
-    "Suryas": 0,
-    "Vajras": 0,
+    "Agniyas": 860,
+    "Marutas": 1160,
+    "Rudras": 360,
+    "Dhronas": 340,
+    "Suryas": 880,
+    "Vajras": 540,
   };
 
   const [houseScores, setHouseScores] = useState<HouseScore[]>(() => 
@@ -78,7 +78,7 @@ export function DashboardLiveScores() {
 
   const dynamicStats: Stat[] = [
     { label: "Total Teams", value: 6, hint: "Agniyas, Dhronas, Marutas, Rudras, Suryas, Vajras", accent: "gold", href: "/#teams" },
-    { label: "Total Participants", value: 0, hint: "Across all events", accent: "red" },
+    { label: "Total Participants", value: Object.values(participationScores).reduce((a, b) => a + b, 0), hint: "Across all events", accent: "red" },
     { label: "Total Events", value: 150, hint: "", accent: "gold", href: "/events" },
     { label: "Festival Days", value: 3, hint: "Three days. One legend.", accent: "red" },
     { label: "1st Place Holder", value: 1, suffix: leader ? ` — ${leader.name}` : " — ...", hint: "Leading the rankings", accent: "gold", href: "/#leaderboard" },
