@@ -114,7 +114,7 @@ export const houses: House[] = [
     accent: "#E0E0E0",
     glow: "#E0E0E0",
     gradient: "linear-gradient(135deg, #FFFFFF, #B0BEC5)",
-    breakdown: { winners: 0, runners: 0, participation: 360 },
+    breakdown: { winners: 0, runners: 0, participation: 510 },
     logo: "/teams 26/rudras26.png",
     logoScale: "scale-110",
     isOriginalShape: true,
