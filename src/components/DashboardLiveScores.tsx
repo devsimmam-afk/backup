@@ -39,12 +39,12 @@ export function DashboardLiveScores() {
 
 
   const participationScores: Record<string, number> = {
-    "Agniyas": 860,
-    "Marutas": 1160,
-    "Rudras": 510,
-    "Dhronas": 340,
-    "Suryas": 880,
-    "Vajras": 540,
+    "Agniyas": 960,
+    "Marutas": 1260,
+    "Rudras": 660,
+    "Dhronas": 740,
+    "Suryas": 1480,
+    "Vajras": 590,
   };
 
   const [houseScores, setHouseScores] = useState<HouseScore[]>(() => 
