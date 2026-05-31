@@ -19,6 +19,19 @@ if (existsSync(OUTPUT)) {
 mkdirSync(STATIC, { recursive: true });
 mkdirSync(FN_DIR, { recursive: true });
 
+// Ensure a single copy of @tanstack/router-core is available to the function
+// This prevents nested copies under @tanstack/react-router/node_modules
+try {
+  const topRouterCore = join(process.cwd(), "node_modules", "@tanstack", "router-core");
+  const targetRouterCore = join(FN_DIR, "node_modules", "@tanstack", "router-core");
+  if (existsSync(topRouterCore)) {
+    mkdirSync(join(FN_DIR, "node_modules", "@tanstack"), { recursive: true });
+    cpSync(topRouterCore, targetRouterCore, { recursive: true, force: true });
+  }
+} catch (e) {
+  console.warn("Could not copy @tanstack/router-core into function node_modules:", e.message || e);
+}
+
 // 3. Write the routing config
 writeFileSync(
   join(OUTPUT, "config.json"),
