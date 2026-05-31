@@ -8,7 +8,6 @@ import { Showcase3D } from "@/components/Showcase3D";
 
 import { PastYears } from "@/components/PastYears";
 import { Footer } from "@/components/Footer";
-import { Loader } from "@/components/Loader";
 import { Particles } from "@/components/Particles";
 
 export const Route = createFileRoute("/")({
@@ -46,7 +45,6 @@ function Index() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      <Loader />
       <Navbar />
       <main className="relative">
         <Particles count={20} className="!fixed inset-0 -z-10" />
