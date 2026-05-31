@@ -157,7 +157,7 @@ try {
 } catch (e) {
   // ignore
 }
-console.log('VERCEL_RUNTIME_DEBUG', JSON.stringify(__VERCEL_DEBUG));
+console.log('VERCEL_RUNTIME_DEBUG', JSON.stringify(typeof __VERCEL_DEBUG__ !== 'undefined' ? __VERCEL_DEBUG__ : null));
 
 export default async function handler(req, res) {
   try {
