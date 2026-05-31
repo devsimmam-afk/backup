@@ -15,7 +15,7 @@ type Stat = {
 import { allEvents } from "@/lib/eventsData";
 
 const stats: Stat[] = [
-  { icon: Users, label: "Total Teams", value: 6, hint: "Agniyas, Dhronas, Marutas, Rudras, Suryas, Vajras", accent: "gold" },
+  { icon: Users, label: "Total Teams", value: 6, hint: "Agniyas, Dronas, Marutas, Rudras, Suryas, Vajras", accent: "gold" },
   { icon: Flame, label: "Total Participants", value: 0, hint: "Across all events", accent: "red" },
   { icon: Trophy, label: "Total Events", value: 150, hint: "", accent: "gold" },
   { icon: Building2, label: "Festival Days", value: 3, hint: "Three days. One legend.", accent: "red" },

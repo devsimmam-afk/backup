@@ -43,7 +43,7 @@ export function DashboardLiveScores() {
     "Agniyas": 1260,
     "Marutas": 1460,
     "Rudras": 860,
-    "Dhronas": 1440,
+    "Dronas": 1440,
     "Suryas": 1980,
     "Vajras": 790,
   };
@@ -78,7 +78,7 @@ export function DashboardLiveScores() {
   const leader = houseScores[0];
 
   const dynamicStats: Stat[] = [
-    { label: "Total Teams", value: 6, hint: "Agniyas, Dhronas, Marutas, Rudras, Suryas, Vajras", accent: "gold", href: "/#teams" },
+    { label: "Total Teams", value: 6, hint: "Agniyas, Dronas, Marutas, Rudras, Suryas, Vajras", accent: "gold", href: "/#teams" },
     { label: "Total Participants", value: Object.values(participationScores).reduce((a, b) => a + b, 0), hint: "Across all events", accent: "red" },
     { label: "Total Events", value: 150, hint: "", accent: "gold", href: eventsRedirectHref },
     { label: "Festival Days", value: 3, hint: "Three days. One legend.", accent: "red" },

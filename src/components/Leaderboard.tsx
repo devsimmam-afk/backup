@@ -56,7 +56,7 @@ function getHouseIcon(element: string) {
 
 function getHouseLogo(houseName: string) {
   const name = houseName.toLowerCase();
-  if (name === "dhronas") return "/houses/dronas.jpg";
+  if (name === "dronas") return "/houses/dronas.jpg";
   return `/houses/${name}.png`;
 }
 
@@ -66,7 +66,6 @@ function getHouseImageStyle(houseName: string) {
     case "agniyas": return "scale-[1.75] object-[center_20%]";
     case "rudras": return "scale-[1.55] object-[center_25%]";
     case "suryas": return "scale-[1.45] object-[center_40%]";
-    case "dhronas":
     case "dronas": return "scale-[1.55] object-[center_30%]";
     case "marutas": return "scale-[1.55] object-[center_25%]";
     case "vajras": return "scale-[1.55] object-[center_30%]";

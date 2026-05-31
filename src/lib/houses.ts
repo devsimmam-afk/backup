@@ -47,7 +47,7 @@ export const houses: House[] = [
     whatsapp: "https://chat.whatsapp.com/EctoGVgsMaCIT8iaKUvyAj",
   },
   {
-    name: "Dhronas",
+    name: "Dronas",
     tagline: "",
     short: "DHR",
     element: "Wisdom",
@@ -60,7 +60,7 @@ export const houses: House[] = [
       "Dr. R. BALAMANIGANDAN",
       "Dr. J. SAMUEL SIMRON RAJKUMAR"
     ],
-    about: "Strategy in every step. Dhronas plan, execute, and conquer with calculated precision.",
+    about: "Strategy in every step. Dronas plan, execute, and conquer with calculated precision.",
     accent: "#B90000",
     glow: "#B90000",
     gradient: "linear-gradient(135deg, #B90000, #7A0000)",
@@ -68,7 +68,7 @@ export const houses: House[] = [
     logo: "/teams 26/dronas 26.png",
     logoScale: "scale-110",
     isOriginalShape: true,
-    instagram: "https://www.instagram.com/dronas_simmam_2k26/",
+    instagram: "https://www.instagram.com/dronas_2026?igsh=d2R6NXkxNG1ybXdo",
     whatsapp: "https://chat.whatsapp.com/JsziSy6aBgPA55K2efUA30",
   },
   {
@@ -143,7 +143,7 @@ export const houses: House[] = [
     logo: "/teams 26/suryas 26.PNG",
     logoScale: "scale-110",
     isOriginalShape: true,
-    instagram: "https://www.instagram.com/suryas_2026/",
+    instagram: "https://www.instagram.com/suryas.2025?igsh=d3d6Ym1rZWczaTRk",
     whatsapp: "https://chat.whatsapp.com/JibjI54UQOK3mr1loPgy9N",
   },
   {
@@ -168,7 +168,7 @@ export const houses: House[] = [
     logo: "/teams 26/vajras-26.png",
     logoScale: "scale-110",
     isOriginalShape: true,
-    instagram: "https://www.instagram.com/vajras_2026/",
+    instagram: "https://www.instagram.com/vajras._2026?igsh=MWIzaDM5b3UxcjlqNg==",
     whatsapp: "https://chat.whatsapp.com/HtQczeqqEqdANGwnyu95oG",
   },
 ];
