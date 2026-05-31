@@ -138,6 +138,26 @@ writeFileSync(
   join(FN_DIR, "index.mjs"),
   `import server from "./dist/server/server.js";
 import { Readable } from "node:stream";
+// Debug startup: detect router-core versions and presence of reserveStreamFastPath
+let __VERCEL_DEBUG__ = {};
+try {
+  try {
+    const pkg = await import('@tanstack/router-core/package.json', { assert: { type: 'json' } });
+    __VERCEL_DEBUG__.routerCoreVersion = pkg.default?.version || pkg.version || null;
+  } catch (e) {
+    __VERCEL_DEBUG__.routerCoreVersion = null;
+  }
+  try {
+    const rcSsr = await import('@tanstack/router-core/ssr/server');
+    __VERCEL_DEBUG__.rcSsrKeys = Object.keys(rcSsr).slice(0,50);
+    __VERCEL_DEBUG__.hasReserveStreamFastPath = !!(rcSsr.serverSsr && typeof rcSsr.serverSsr.reserveStreamFastPath === 'function');
+  } catch (e) {
+    __VERCEL_DEBUG__.rcSsrError = String(e);
+  }
+} catch (e) {
+  // ignore
+}
+console.log('VERCEL_RUNTIME_DEBUG', JSON.stringify(__VERCEL_DEBUG));
 
 export default async function handler(req, res) {
   try {
