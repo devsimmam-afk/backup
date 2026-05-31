@@ -119,6 +119,20 @@ execSync("npm install --production --ignore-scripts", {
   stdio: "inherit",
 });
 
+// After installation, overwrite any nested copies with the top-level router-core
+try {
+  const topRouterCore = join(process.cwd(), "node_modules", "@tanstack", "router-core");
+  const targetRouterCore = join(FN_DIR, "node_modules", "@tanstack", "router-core");
+  const nestedTarget = join(FN_DIR, "node_modules", "@tanstack", "react-router", "node_modules", "@tanstack", "router-core");
+  if (existsSync(topRouterCore)) {
+    cpSync(topRouterCore, targetRouterCore, { recursive: true, force: true });
+    mkdirSync(join(FN_DIR, "node_modules", "@tanstack", "react-router", "node_modules", "@tanstack"), { recursive: true });
+    cpSync(topRouterCore, nestedTarget, { recursive: true, force: true });
+  }
+} catch (e) {
+  console.warn("Post-install copy of @tanstack/router-core failed:", e.message || e);
+}
+
 // 8. Create the function entry point
 writeFileSync(
   join(FN_DIR, "index.mjs"),
