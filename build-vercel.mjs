@@ -57,29 +57,16 @@ cpSync(join(process.cwd(), "dist", "server"), join(FN_DIR, "dist", "server"), {
   recursive: true,
 });
 
-// 6. Create a minimal package.json with only runtime deps needed for SSR
+// 6. Create package.json with all app runtime dependencies for SSR
 const mainPkg = JSON.parse(readFileSync(join(process.cwd(), "package.json"), "utf-8"));
-const runtimeDeps = {};
-const needed = [
-  "h3-v2", "@tanstack/router-core", "@tanstack/react-router", "@tanstack/history",
-  "seroval", "react", "react-dom", "lucide-react", "react-icons",
-  "@radix-ui/react-dialog", "class-variance-authority", "clsx", "tailwind-merge",
-  "@tanstack/react-store", "seroval-plugins", "isbot",
-];
-for (const dep of needed) {
-  if (mainPkg.dependencies?.[dep]) {
-    runtimeDeps[dep] = mainPkg.dependencies[dep];
-  } else {
-    // Find it in the lockfile / node_modules
-    const depPkgPath = join(process.cwd(), "node_modules", dep, "package.json");
-    if (existsSync(depPkgPath)) {
-      const depPkg = JSON.parse(readFileSync(depPkgPath, "utf-8"));
-      if (dep === "h3-v2") {
-        runtimeDeps[dep] = `npm:h3@${depPkg.version}`;
-      } else {
-        runtimeDeps[dep] = depPkg.version;
-      }
-    }
+const runtimeDeps = { ...(mainPkg.dependencies ?? {}) };
+
+// Ensure h3-v2 alias exists because the server bundle imports it directly.
+if (!runtimeDeps["h3-v2"]) {
+  const h3PkgPath = join(process.cwd(), "node_modules", "h3", "package.json");
+  if (existsSync(h3PkgPath)) {
+    const h3Pkg = JSON.parse(readFileSync(h3PkgPath, "utf-8"));
+    runtimeDeps["h3-v2"] = `npm:h3@${h3Pkg.version}`;
   }
 }
 
@@ -101,15 +88,33 @@ writeFileSync(
   `import server from "./dist/server/server.js";
 import { Readable } from "node:stream";
 
+function normalizeHeaders(inputHeaders) {
+  const headers = new Headers();
+  for (const [key, value] of Object.entries(inputHeaders || {})) {
+    if (typeof value === "undefined") continue;
+    if (Array.isArray(value)) {
+      for (const item of value) {
+        if (typeof item === "string") headers.append(key, item);
+      }
+      continue;
+    }
+    headers.set(key, String(value));
+  }
+  return headers;
+}
+
 export default async function handler(req, res) {
   try {
     const protocol = req.headers['x-forwarded-proto'] || 'https';
     const host = req.headers['x-forwarded-host'] || req.headers.host || 'localhost';
-    const url = new URL(req.url, \`\${protocol}://\${host}\`);
+    const rawUrl = typeof req.url === 'string' ? req.url : '/';
+    const url = rawUrl.startsWith('http://') || rawUrl.startsWith('https://')
+      ? new URL(rawUrl)
+      : new URL(rawUrl, \`\${protocol}://\${host}\`);
 
     const init = {
       method: req.method,
-      headers: req.headers,
+      headers: normalizeHeaders(req.headers),
     };
 
     if (req.method !== 'GET' && req.method !== 'HEAD') {
