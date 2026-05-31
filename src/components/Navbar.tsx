@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, type MouseEvent } from "react";
 import { Menu, X } from "lucide-react";
 import simats from "@/assets/simats-logo.png";
 import { LionEmblem } from "./LionEmblem";
@@ -61,6 +61,39 @@ export function Navbar() {
   }, []);
 
   const closeMenu = useCallback(() => setOpen(false), []);
+
+  const handleMobileLinkClick = useCallback(
+    (href: string) => (event: MouseEvent<HTMLAnchorElement>) => {
+      const hashIndex = href.indexOf("#");
+      const hasHash = hashIndex !== -1;
+
+      if (!hasHash) {
+        closeMenu();
+        return;
+      }
+
+      event.preventDefault();
+      closeMenu();
+
+      const hash = href.slice(hashIndex);
+      if (window.location.pathname !== "/") {
+        window.location.assign(`/${hash}`);
+        return;
+      }
+
+      const id = hash.slice(1);
+      const target = document.getElementById(id);
+
+      if (!target) {
+        window.location.hash = hash;
+        return;
+      }
+
+      history.replaceState(null, "", hash);
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    },
+    [closeMenu],
+  );
 
   return (
     <>
@@ -211,6 +244,7 @@ export function Navbar() {
             <div style={{ flex: 1 }} />
 
             <button
+              type="button"
               onClick={() => setOpen((v) => !v)}
               className="glass"
               style={{
@@ -310,6 +344,7 @@ export function Navbar() {
           </div>
 
           <button
+            type="button"
             onClick={closeMenu}
             className="glass"
             style={{
@@ -343,7 +378,7 @@ export function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              onClick={closeMenu}
+              onClick={handleMobileLinkClick(l.href)}
               style={{
                 display: "flex",
                 alignItems: "center",

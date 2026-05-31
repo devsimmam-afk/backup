@@ -6,19 +6,29 @@ export function Loader() {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    const finish = () => setExiting(true);
+    let finished = false;
 
-    const fallback = window.setTimeout(finish, 1800);
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      setExiting(true);
+    };
+
+    const fallback = window.setTimeout(finish, 2000);
+    const hardStop = window.setTimeout(() => setHidden(true), 3200);
 
     if (document.readyState === "complete") {
       window.requestAnimationFrame(finish);
     } else {
       window.addEventListener("load", finish, { once: true });
+      window.addEventListener("DOMContentLoaded", finish, { once: true });
     }
 
     return () => {
       window.clearTimeout(fallback);
+      window.clearTimeout(hardStop);
       window.removeEventListener("load", finish);
+      window.removeEventListener("DOMContentLoaded", finish);
     };
   }, []);
 
