@@ -2,42 +2,16 @@ import { useEffect, useState } from "react";
 import { LionEmblem } from "./LionEmblem";
 
 export function Loader() {
-  const [exiting, setExiting] = useState(false);
-  const [hidden, setHidden] = useState(false);
-
+  const [done, setDone] = useState(false);
   useEffect(() => {
-    const finish = () => setExiting(true);
-
-    const fallback = window.setTimeout(finish, 1800);
-
-    if (document.readyState === "complete") {
-      window.requestAnimationFrame(finish);
-    } else {
-      window.addEventListener("load", finish, { once: true });
-    }
-
-    return () => {
-      window.clearTimeout(fallback);
-      window.removeEventListener("load", finish);
-    };
+    const t = setTimeout(() => setDone(true), 1800);
+    return () => clearTimeout(t);
   }, []);
-
-  useEffect(() => {
-    if (!exiting) return;
-    const remove = window.setTimeout(() => setHidden(true), 700);
-    return () => window.clearTimeout(remove);
-  }, [exiting]);
-
-  if (hidden) {
-    return null;
-  }
 
   return (
     <div
-      className={`fixed inset-0 z-[100] grid place-items-center bg-background transition-[opacity,transform] duration-700 ${
-        exiting
-          ? "pointer-events-none opacity-0 -translate-y-8 scale-[0.99]"
-          : "opacity-100 translate-y-0 scale-100"
+      className={`fixed inset-0 z-[100] grid place-items-center bg-background transition-opacity duration-700 ${
+        done ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
     >
       <div className="absolute inset-0 grid-bg opacity-50" />
