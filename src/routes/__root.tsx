@@ -30,7 +30,10 @@ export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        name: "viewport",
+        content: "width=device-width, initial-scale=1, viewport-fit=cover",
+      },
       { title: "SIMMAM 2026 — SIMATS Engineering Culturals" },
       { name: "description", content: "The national-level cultural festival of SIMATS Engineering." },
       { name: "author", content: "SIMATS Engineering" },
