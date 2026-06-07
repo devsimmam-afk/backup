@@ -11,6 +11,9 @@ import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 export default defineConfig({
   cloudflare: false,
   vite: {
+    ssr: {
+      noExternal: ["lucide-react", "react-icons"],
+    },
     plugins: [
       ViteImageOptimizer({
         // Default options are usually good enough (lossless compression)

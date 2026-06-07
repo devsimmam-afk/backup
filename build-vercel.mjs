@@ -85,6 +85,22 @@ cpSync(join(process.cwd(), "dist", "server"), join(FN_DIR, "dist", "server"), {
 const mainPkg = JSON.parse(readFileSync(join(process.cwd(), "package.json"), "utf-8"));
 const runtimeDeps = { ...(mainPkg.dependencies ?? {}) };
 
+// Remove heavy dependencies that are either bundled by Vite or not used at runtime
+const excludeDeps = [
+  "lucide-react",
+  "react-icons",
+  "@tailwindcss/vite",
+  "tailwindcss",
+  "vite-tsconfig-paths",
+  "@tanstack/router-plugin",
+  "pdf-parse",
+  "pdfjs-dist",
+  "date-fns"
+];
+excludeDeps.forEach((dep) => {
+  delete runtimeDeps[dep];
+});
+
 // Ensure h3-v2 alias exists because the server bundle imports it directly.
 if (!runtimeDeps["h3-v2"]) {
   const h3PkgPath = join(process.cwd(), "node_modules", "h3", "package.json");
