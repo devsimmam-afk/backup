@@ -1,6 +1,5 @@
 import { Calendar, Trophy, Zap } from "lucide-react";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
-import { Countdown } from "./Countdown";
 import { LionEmblem } from "./LionEmblem";
 import { Particles } from "./Particles";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -119,13 +118,6 @@ export function Hero() {
 
         {/* CTAs removed per request */}
 
-        {/* Countdown */}
-        <div className="mt-14 animate-rise-in" style={{ animationDelay: ".55s" }}>
-          <p className="text-[10px] tracking-[0.4em] text-gold/70 mb-3">
-            COUNTDOWN TO THE GRAND OPENING
-          </p>
-          <Countdown />
-        </div>
       </div>
     </section>
   );
