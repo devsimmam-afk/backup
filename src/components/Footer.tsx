@@ -28,7 +28,7 @@ export function Footer() {
             </p>
             <div className="flex gap-2 mt-5 flex-wrap">
               <a
-                href="https://www.instagram.com/ssesimam/"
+                href="https://www.instagram.com/ssesimmam/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"

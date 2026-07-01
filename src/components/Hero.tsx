@@ -63,7 +63,7 @@ export function Hero() {
         <div className="header-social-container mb-8 animate-rise-in mx-auto w-fit max-w-full gap-4 sm:gap-6">
 
           <a
-            href="https://www.instagram.com/ssesimam/"
+            href="https://www.instagram.com/ssesimmam/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:scale-110 transition-transform duration-300 drop-shadow-md hover:drop-shadow-lg"
