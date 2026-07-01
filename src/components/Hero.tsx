@@ -105,7 +105,7 @@ export function Hero() {
           className="mt-6 text-base md:text-xl text-foreground/80 max-w-2xl mx-auto animate-rise-in"
           style={{ animationDelay: ".3s" }}
         >
-          A national-level engineering culturals festival. Where talent ignites,
+          A National-level Engineering Cultural Fest. Where talent ignites,
           departments unite, and excellence is celebrated.
         </p>
 

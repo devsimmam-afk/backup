@@ -23,7 +23,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-sm text-foreground/65 max-w-md leading-relaxed">
-              A national-level engineering culturals festival hosted by SIMATS Engineering.
+              A National-level Engineering Cultural Fest hosted by SIMATS Engineering.
               Where every department becomes a tribe, and every stage becomes a story.
             </p>
             <div className="flex gap-2 mt-5 flex-wrap">

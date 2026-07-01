@@ -68,7 +68,7 @@ export const houses: House[] = [
     logo: "/teams 26/dronas 26.png",
     logoScale: "scale-110",
     isOriginalShape: true,
-    instagram: "https://www.instagram.com/dronas_2026?igsh=d2R6NXkxNG1ybXdo",
+    instagram: "https://www.instagram.com/dronas_2026/",
     whatsapp: "https://chat.whatsapp.com/JsziSy6aBgPA55K2efUA30",
   },
   {
